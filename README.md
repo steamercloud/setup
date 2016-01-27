@@ -21,8 +21,6 @@ Once you have these installed run:
 ```bash
 git clone https://github.com/oneops/setup
 cd setup/vagrant
-# (until public) copy your ssh key - or use a different key you setup in github
-cp ~/.ssh/id_rsa git_ssh/git_rsa
 vagrant up 
 ```
 
