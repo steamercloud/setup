@@ -36,11 +36,13 @@ Setup your organization cloud with private location in OneOps
          Note down the Management location path and authorization key for your cloud
          Eg:  /platform-dev/_clouds/my-cloud & mycloudsecret
          
-Create local inductor:
+Add an inductor listener.
 	
-	cd /opt/oneops ; inductor create ; cd inductor ; inductor add
+	cd /opt/oneops/inductor ; inductor add
 
-It will ask a series of questions, below is an example.  note: If a different location is used, lookup the auth key in the cloud template - located [here](https://github.com/oneops/circuit-oneops-1/tree/master/clouds)
+It will ask a series of questions, below is an example for aws.  
+
+note: If a different location/cloud is used, lookup the auth key in the cloud template [here](https://github.com/oneops/circuit-oneops-1/tree/master/clouds)
 
 ```bash
 [root@localhost inductor]# inductor add
