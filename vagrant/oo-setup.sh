@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mkdir /home/oneops
+mkdir -p /home/oneops
 cd /home/oneops
 
 export BUILD_BASE='/home/oneops/build'
