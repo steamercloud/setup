@@ -5,7 +5,7 @@ cd /home/oneops
 
 export BUILD_BASE='/home/oneops/build'
 export OO_HOME='/home/oneops'
-export GITHUB_URL=git@oogit:oneops
+export GITHUB_URL='https://github.com/oneops'
 
 mkdir -p $BUILD_BASE
 
@@ -28,5 +28,3 @@ cp $BUILD_BASE/dev-tools/setup-scripts/* .
 
 now=$(date +"%T")
 echo "All done at : $now"
-
-
