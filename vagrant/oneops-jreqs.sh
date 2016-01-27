@@ -62,7 +62,7 @@ if [ ! -e "/opt/apache-cassandra-2.1.12-bin.tar.gz" ]; then
 fi
 tar -xzvf apache-cassandra-2.1.12-bin.tar.gz
 ln -sf apache-cassandra-2.1.12 cassandra
-mkdir /opt/cassandra/log
+mkdir -p /opt/cassandra/log
 cp "$VAGRANT_MNT/cassandra/2.1/init.d/cassandra" /etc/init.d
 
 chown root:root /etc/init.d/cassandra
