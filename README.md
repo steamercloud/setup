@@ -44,6 +44,7 @@ It will ask a series of questions, below is an example for aws.
 
 note: If a different location/cloud is used, lookup the auth key in the cloud template [here](https://github.com/oneops/circuit-oneops-1/tree/master/clouds)
 
+###Answers to Inductor 
 ```bash
 [root@localhost inductor]# inductor add
 What message queue host (if empty defaults to localhost)? 
