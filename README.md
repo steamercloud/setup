@@ -8,7 +8,7 @@ For a full-deployment of OneOps with metrics (back loop) use the core assembly w
 prerequisites
 =======
 
-install VirtualBox and Vagrant
+install VirtualBox and Vagrant (version 1.8 or above)
 
 (until public) add your public ssh key to your account at github.com
 
