@@ -8,13 +8,16 @@ export VAGRANT_MNT="/vagrant"
 echo '127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 search api antenna opsmq daq opsdb sysdb kloopzappdb kloopzcmsdb cmsapi sensor activitidb kloopzmq searchmq' > /etc/hosts
 echo '::1         localhost localhost.localdomain localhost6 localhost6.localdomain6' >> /etc/hosts
 
-#java 
+# java 
 echo "OO installing open jdk 1.8"
 yum -y install java-1.8.0-openjdk-devel
-yum -y install vim-common
-yum -y install perl-Digest-SHA
 
-#postgres
+# misc
+yum -y install vim-common ntp perl-Digest-SHA
+chkconfig ntpd on
+service ntpd start
+
+# postgres
 echo "OO install postgres 9.2"
 yum -y install http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-centos92-9.2-6.noarch.rpm
 yum -y install postgresql92-server postgresql92-contrib
