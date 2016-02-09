@@ -34,16 +34,23 @@ service postgresql-9.2 start
 echo "OO done with postgres"
 
 apache_mirror="http://www.us.apache.org/dist"
+apache_archive="http://archive.apache.org/dist"
 
-echo "OO install activemq 5.10.2"
+amq_version="5.10.2"
+echo "OO install activemq $amq_version"
 cd /opt
-wget -nv $apache_mirror/activemq/5.10.2/apache-activemq-5.10.2-bin.tar.gz
-if [ ! -e "/opt/apache-activemq-5.10.2-bin.tar.gz" ]; then
-	echo "Can not get Activemq distribution! "
-	exit 1
+wget -nv $apache_mirror/activemq//apache-activemq-$amq_version-bin.tar.gz
+if [ ! -e "/opt/apache-activemq-$amq_version-bin.tar.gz" ]; then
+  wget -nv $apache_archive/activemq/$amq_version/apache-activemq-$amq_version-bin.tar.gz
+fi   
+
+if [ ! -e "/opt/apache-activemq-$amq_version-bin.tar.gz" ]; then
+  echo "Can not get Activemq distribution! "
+  exit 1
 fi
-tar -xzvf apache-activemq-5.10.2-bin.tar.gz 
-ln -s ./apache-activemq-5.10.2 activemq
+
+tar -xzvf apache-activemq-$amq_version-bin.tar.gz 
+ln -sf ./apache-activemq-$amq_version activemq
 cp "$VAGRANT_MNT/amq/5.10/init.d/activemq" /etc/init.d
 cp "$VAGRANT_MNT/amq/credentials.properties" /opt/activemq/conf/
 chown root:root /etc/init.d/activemq
@@ -53,15 +60,19 @@ chkconfig activemq on
 service activemq start
 echo "OO done with activemq"
 
-echo "OO install cassandra 2.1.12"
+c_version="2.1.12"
+echo "OO install cassandra $c_version"
 cd /opt
-wget -nv $apache_mirror/cassandra/2.1.12/apache-cassandra-2.1.12-bin.tar.gz
-if [ ! -e "/opt/apache-cassandra-2.1.12-bin.tar.gz" ]; then
-	echo "Can not get Cassandra distribution! "
-	exit 1
+wget -nv $apache_mirror/cassandra/$c_version/apache-cassandra-$c_version-bin.tar.gz
+if [ ! -e "/opt/apache-cassandra-$c_version-bin.tar.gz" ]; then
+  wget -nv $apache_archive/cassandra/$c_version/apache-cassandra-$c_version-bin.tar.gz
 fi
-tar -xzvf apache-cassandra-2.1.12-bin.tar.gz
-ln -sf apache-cassandra-2.1.12 cassandra
+if [ ! -e "/opt/apache-cassandra-$c_version-bin.tar.gz" ]; then
+  echo "Can not get Cassandra distribution! "
+  exit 1
+fi
+tar -xzvf apache-cassandra-$c_version-bin.tar.gz
+ln -sf apache-cassandra-$c_version cassandra
 mkdir -p /opt/cassandra/log
 cp "$VAGRANT_MNT/cassandra/2.1/init.d/cassandra" /etc/init.d
 
@@ -72,15 +83,19 @@ chkconfig cassandra on
 service cassandra start
 echo "OO done with cassandra"
 
-echo "OO install tomcat 7"
+t_version="7.0.67"
+echo "OO install tomcat $t_version"
 cd /opt
-wget -nv $apache_mirror/tomcat/tomcat-7/v7.0.67/bin/apache-tomcat-7.0.67.tar.gz
-if [ ! -e "/opt/apache-tomcat-7.0.67.tar.gz" ]; then
-	echo "Can not get Tomcat distribution! "
-	exit 1
+wget -nv $apache_mirror/tomcat/tomcat-7/v$t_version/bin/apache-tomcat-$t_version.tar.gz
+if [ ! -e "/opt/apache-tomcat-$t_version.tar.gz" ]; then
+  wget -nv $apache_archive/tomcat/tomcat-7/v$t_version/bin/apache-tomcat-$t_version.tar.gz
 fi
-tar -xzvf apache-tomcat-7.0.67.tar.gz 
-mv apache-tomcat-7.0.67 /usr/local/tomcat7
+if [ ! -e "/opt/apache-tomcat-$t_version.tar.gz" ]; then
+  echo "Can not get Tomcat distribution! "
+  exit 1
+fi
+tar -xzvf apache-tomcat-$t_version.tar.gz 
+mv apache-tomcat-$t_version /usr/local/tomcat7
 useradd -M -d /usr/local/tomcat7 tomcat7 
 chown -R tomcat7 /usr/local/tomcat7
 cp "$VAGRANT_MNT/tomcat/7.0/init.d/tomcat7" /etc/init.d
@@ -89,18 +104,22 @@ chmod 755 /etc/init.d/tomcat7
 chkconfig --add tomcat7
 chkconfig tomcat7 on
 service tomcat7 start
-echo "OO done with tomcat 7"
+echo "OO done with tomcat $t_version"
 
-echo "OO install maven 3.33"
+m_version="3.3.3"
+echo "OO install maven $m_version"
 cd /opt
-wget -nv $apache_mirror/maven/maven-3/3.3.3/binaries/apache-maven-3.3.3-bin.tar.gz
-if [ ! -e "/opt/apache-maven-3.3.3-bin.tar.gz" ]; then
-	echo "Can not get Maven distribution! "
-	exit 1
+wget -nv $apache_mirror/maven/maven-3/$m_version/binaries/apache-maven-$m_version-bin.tar.gz
+if [ ! -e "/opt/apache-maven-$m_version-bin.tar.gz" ]; then
+  wget -nv $apache_archive/maven/maven-3/$m_version/binaries/apache-maven-$m_version-bin.tar.gz
 fi
-tar -xzvf apache-maven-3.3.3-bin.tar.gz -C /usr/local
+if [ ! -e "/opt/apache-maven-$m_version-bin.tar.gz" ]; then
+  echo "Can not get Maven distribution! "
+  exit 1
+fi
+tar -xzvf apache-maven-$m_version-bin.tar.gz -C /usr/local
 cd /usr/local
-ln -s apache-maven-3.3.3 maven
+ln -sf apache-maven-$m_version maven
 touch /etc/profile.d/maven.sh 
 echo 'export M2_HOME=/usr/local/maven' >> /etc/profile.d/maven.sh 
 echo 'export PATH=${M2_HOME}/bin:${PATH}' >> /etc/profile.d/maven.sh
