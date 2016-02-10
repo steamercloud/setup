@@ -42,7 +42,7 @@ apache_archive="http://archive.apache.org/dist"
 amq_version="5.10.2"
 echo "OO install activemq $amq_version"
 cd /opt
-wget -nv $apache_mirror/activemq//apache-activemq-$amq_version-bin.tar.gz
+wget -nv $apache_mirror/activemq/$amq_version/apache-activemq-$amq_version-bin.tar.gz
 if [ ! -e "/opt/apache-activemq-$amq_version-bin.tar.gz" ]; then
   wget -nv $apache_archive/activemq/$amq_version/apache-activemq-$amq_version-bin.tar.gz
 fi   
