@@ -138,3 +138,105 @@ dd if=/dev/urandom count=24 bs=1 | xxd -ps > oo.key
 truncate -s -1 oo.key
 fi
 echo "OO Done with des file"
+
+
+#
+# ruby
+#
+
+gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+curl -sSL https://get.rvm.io | bash -s stable
+
+source /usr/local/rvm/scripts/rvm
+rvm use --default --install 1.9.3
+shift
+gem install net-ssh -v 2.9.1
+gem install rails
+gem install bundler
+gem install mixlib-log -v '1.6.0'
+
+rvm cleanup all
+
+yum install -y gcc ruby-devel zlib-devel nc bind-utils
+yum -y install libxml2-devel libxslt-devel
+yum -y install graphviz
+
+cp "$VAGRANT_MNT/display/init.d/display" /etc/init.d
+
+chkconfig --add display
+chkconfig display on
+
+
+#
+# elasticsearch
+#
+
+echo "OO install elasticsearch"
+rpm --import https://packages.elastic.co/GPG-KEY-elasticsearch
+
+echo "[elasticsearch-1.7]
+name=Elasticsearch repository for 1.7.x packages
+baseurl=http://packages.elastic.co/elasticsearch/1.7/centos
+gpgcheck=1
+gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch
+enabled=1" > /etc/yum.repos.d/elasticsearch.repo
+yum -y install elasticsearch
+
+export ES_HEAP_SIZE=512m
+echo "export ES_HEAP_SIZE=512m" > /etc/profile.d/es.sh
+sed -i -- 's/\#cluster\.name\: elasticsearch/cluster\.name\: oneops/g' /etc/elasticsearch/elasticsearch.yml
+
+systemctl enable elasticsearch
+systemctl start elasticsearch
+
+cp "$VAGRANT_MNT/search-consumer/init.d/search-consumer" /etc/init.d
+chkconfig --add search-consumer
+chkconfig search-consumer on
+
+
+cp "$VAGRANT_MNT/search-consumer/cms_template.json" /tmp
+cp "$VAGRANT_MNT/search-consumer/event_template.json" /tmp
+
+curl http://localhost:9200
+while [ $? != 0 ]; do
+        sleep 1
+        curl http://localhost:9200
+done
+
+curl -d @/tmp/cms_template.json -X PUT http://localhost:9200/_template/cms_template
+curl -d @/tmp/event_template.json -X PUT http://localhost:9200/_template/event_template
+
+echo "OO done with elasticsearch"
+
+
+#
+# logstash
+#
+
+
+echo "OO install logstash"
+
+echo "[logstash-2.1]
+name=Logstash repository for 2.1.x packages
+baseurl=http://packages.elastic.co/logstash/2.1/centos
+gpgcheck=1
+gpgkey=http://packages.elastic.co/GPG-KEY-elasticsearch
+enabled=1" > /etc/yum.repos.d/logstash.repo
+
+yum -y install logstash
+
+systemctl enable logstash
+systemctl start logstash
+
+#Setup certs for collector and forwarder
+
+echo '127.0.0.1 vagrant.oo.com' >> /etc/hosts
+
+mkdir -p /etc/pki/tls/logstash/certs
+mkdir -p /etc/pki/tls/logstash/private
+
+cd /etc/pki/tls/logstash
+openssl req -x509 -batch -nodes -days 3650 -newkey rsa:2048 -keyout private/logstash-forwarder.key -out certs/logstash-forwarder.crt -subj '/CN=*.oo.com/'
+
+
+cp "$VAGRANT_MNT/logstash/logstash.conf" /etc/logstash/conf.d/logstash.conf
