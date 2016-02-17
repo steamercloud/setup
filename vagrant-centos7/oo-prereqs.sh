@@ -141,7 +141,7 @@ echo "OO Done with des file"
 
 
 # misc packages
-yum install -y gcc ruby-devel zlib-devel nc bind-utils
+yum install -y gcc gcc-c++ ruby-devel zlib-devel nc bind-utils
 yum -y install libxml2-devel libxslt-devel
 yum -y install graphviz
 
