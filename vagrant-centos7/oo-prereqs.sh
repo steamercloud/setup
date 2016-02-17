@@ -64,7 +64,7 @@ chkconfig activemq on
 service activemq start
 echo "OO done with activemq"
 
-c_version="2.1.13"
+c_version="2.2.5"
 echo "OO install cassandra $c_version"
 cd /opt
 wget -nv $apache_mirror/cassandra/$c_version/apache-cassandra-$c_version-bin.tar.gz
@@ -140,26 +140,21 @@ fi
 echo "OO Done with des file"
 
 
+# misc packages
+yum install -y gcc ruby-devel zlib-devel nc bind-utils
+yum -y install libxml2-devel libxslt-devel
+yum -y install graphviz
+
 #
 # ruby
 #
 
-gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
-curl -sSL https://get.rvm.io | bash -s stable
-
-source /usr/local/rvm/scripts/rvm
-rvm use --default --install 1.9.3
-shift
+yum -y install rubygems ruby-devel
+gem install rake
 gem install net-ssh -v 2.9.1
-gem install rails
 gem install bundler
 gem install mixlib-log -v '1.6.0'
-
-rvm cleanup all
-
-yum install -y gcc ruby-devel zlib-devel nc bind-utils
-yum -y install libxml2-devel libxslt-devel
-yum -y install graphviz
+gem install rails
 
 cp "$VAGRANT_MNT/display/init.d/display" /etc/init.d
 

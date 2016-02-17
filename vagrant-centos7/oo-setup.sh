@@ -24,8 +24,7 @@ cd $OO_HOME
 
 cp $BUILD_BASE/dev-tools/setup-scripts/* .
 
-source /usr/local/rvm/scripts/rvm
-rvm use --default --install 1.9.3
+export PATH=$PATH:/usr/local/bin
 
 ./oneops_build.sh
 
