@@ -51,7 +51,7 @@ rails           /usr/bin/supervisord -n -c ...   Up      0.0.0.0:3000->3000/tcp
 tomcat          /usr/bin/supervisord -n -c ...   Up      0.0.0.0:8080->8080/tcp
 ~~~
 
-To access your new oneops instance go to `http://<ip>:9090` where _ip_ is the ip address of your docker machine which you can retrieve with  `docker-machine ip oneops-docker-machine`
+To access your new oneops instance go to `http://<ip>:3000` where _ip_ is the ip address of your docker machine which you can retrieve with  `docker-machine ip oneops-docker-machine`
 
 
 # Troubleshooting
