@@ -38,6 +38,17 @@ docker-compose up -d
 - verify all containers started
 ~~~ bash
 docker-compose ps
+   Name                   Command               State                       Ports
+-------------------------------------------------------------------------------------------------------
+activemq        /usr/bin/supervisord -n -c ...   Up      61616/tcp, 0.0.0.0:61617->61617/tcp, 8161/tcp
+cassandra       /usr/bin/supervisord -n -c ...   Up      0.0.0.0:7000->7000/tcp, 0.0.0.0:9160->9160/tcp
+elasticsearch   /usr/bin/supervisord -n -c ...   Up      0.0.0.0:9200->9200/tcp, 0.0.0.0:9300->9300/tcp
+inductor        /usr/bin/supervisord -n -c ...   Up
+jenkins         /usr/bin/supervisord -n -c ...   Up      0.0.0.0:3001->3001/tcp
+logstash        /usr/bin/supervisord -n -c ...   Up      0.0.0.0:32768->5000/tcp
+postgres        /usr/bin/supervisord -n -c ...   Up      0.0.0.0:5432->5432/tcp
+rails           /usr/bin/supervisord -n -c ...   Up      0.0.0.0:3000->3000/tcp
+tomcat          /usr/bin/supervisord -n -c ...   Up      0.0.0.0:8080->8080/tcp
 ~~~
 
 To access your new oneops instance go to `http://<ip>:9090` where _ip_ is the ip address of your docker machine which you can retrieve with  `docker-machine ip oneops-docker-machine`
