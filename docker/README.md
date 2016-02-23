@@ -40,9 +40,9 @@ docker-compose up -d
 docker-compose ps
 ~~~
 
-To access your new oneops instance go to `http://<ip>:9090` where <ip> is the ip address of your docker machine which you can retrieve with  `docker-machine ip oneops-docker-machine`
+To access your new oneops instance go to `http://<ip>:9090` where _ip_ is the ip address of your docker machine which you can retrieve with  `docker-machine ip oneops-docker-machine`
 
 
 # Troubleshooting
 
-To access a container use `docker exec -it <container> bash` where <container> is the name of one of the oneops containers listed in `docker-compose ps`
+To access a container use `docker exec -it <container> bash` where _container_ is the name of one of the oneops containers listed in `docker-compose ps`
