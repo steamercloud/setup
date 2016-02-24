@@ -33,7 +33,7 @@ export COMPOSE_PROJECT_NAME=oneops
 
 - build oneops code ~ 15 min (re-run this command anytime you want to update your instance with latest oneops code)
 
-```docker-compose run --rm jenkins build
+```docker-compose run --rm jenkins build stable
 ```
 
 - start oneops container images (oneops code is re-deployed on startup)
