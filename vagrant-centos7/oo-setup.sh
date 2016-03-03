@@ -26,7 +26,7 @@ cp $BUILD_BASE/dev-tools/setup-scripts/* .
 
 export PATH=$PATH:/usr/local/bin
 
-./oneops_build.sh
+./oneops_build.sh "$@"
 
 now=$(date +"%T")
 echo "All done at : $now"
