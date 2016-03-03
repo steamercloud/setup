@@ -15,10 +15,8 @@ cp $OO_HOME/client.ts lib/client.ts
 
 echo "circuit init"
 cd $INDUCTOR_HOME
-rm -fr circuit
 circuit create
 cd circuit
-bundle install
 circuit init
 
 echo "circuit-oneops-1 circuit install"
@@ -35,7 +33,6 @@ else
 fi
 sleep 2
 
-bundle install
 circuit install
 
 cd $INDUCTOR_HOME/inductor
