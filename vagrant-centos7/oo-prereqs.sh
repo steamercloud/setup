@@ -142,22 +142,23 @@ echo "OO Done with des file"
 
 # misc packages
 yum install -y gcc gcc-c++ ruby-devel zlib-devel nc bind-utils
-yum -y install libxml2-devel libxslt-devel
-yum -y install graphviz
+
+# gem build deps
+yum -y install libxml2-devel libxslt-devel graphviz
 
 #
 # ruby
 #
 
 yum -y install rubygems ruby-devel
+gem update --system 2.6.1
+gem install json -v 1.8.3
+gem install bundler
 gem install rake
 gem install net-ssh -v 2.9.1
-gem install bundler
 gem install mixlib-log -v '1.6.0'
-gem install rails
 
 cp "$VAGRANT_MNT/display/init.d/display" /etc/init.d
-
 chkconfig --add display
 chkconfig display on
 
