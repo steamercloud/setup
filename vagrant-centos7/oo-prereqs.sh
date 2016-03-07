@@ -157,6 +157,7 @@ gem install bundler
 gem install rake
 gem install net-ssh -v 2.9.1
 gem install mixlib-log -v '1.6.0'
+echo "export PATH=$PATH:/usr/local/bin" > /etc/profile.d/gem_bin.sh
 
 cp "$VAGRANT_MNT/display/init.d/display" /etc/init.d
 chkconfig --add display
