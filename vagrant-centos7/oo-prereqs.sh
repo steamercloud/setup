@@ -8,6 +8,9 @@ export VAGRANT_MNT="/vagrant"
 echo '127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4 search api antenna opsmq daq opsdb sysdb kloopzappdb kloopzcmsdb cmsapi sensor activitidb kloopzmq searchmq' > /etc/hosts
 echo '::1         localhost localhost.localdomain localhost6 localhost6.localdomain6' >> /etc/hosts
 
+# disable ruby doc, this would speed up the install while a bit
+echo 'gem: --no-document' >> ~/.gemrc
+
 # java
 echo "OO installing open jdk 1.8"
 yum -y install java-1.8.0-openjdk-devel
