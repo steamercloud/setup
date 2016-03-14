@@ -3,9 +3,9 @@ FROM oneops/centos7
 WORKDIR /opt
 ENV apache_archive="http://archive.apache.org/dist"
 ENV amq_version="5.10.2"
-RUN wget -nv $apache_archive/activemq/$amq_version/apache-activemq-$amq_version-bin.tar.gz
-RUN tar -xzvf apache-activemq-$amq_version-bin.tar.gz
-RUN ln -sf ./apache-activemq-$amq_version activemq
+RUN wget -nv ${apache_archive}/activemq/${amq_version}/apache-activemq-${amq_version}-bin.tar.gz
+RUN tar -xzvf apache-activemq-${amq_version}-bin.tar.gz
+RUN ln -sf ./apache-activemq-${amq_version} activemq
 RUN mkdir -p ./activemq/data
 RUN ln -sf ./activemq/data/kahadb /kahadb
 RUN echo "activemq.username=system" > /opt/activemq/conf/credentials.properties
