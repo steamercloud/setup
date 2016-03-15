@@ -8,10 +8,28 @@ echo "inductor create"
 cd $INDUCTOR_HOME
 inductor create
 cd inductor
-# add inductor using shared queue
-inductor add < /opt/inductor_answers
 mkdir -p lib
 cp $OO_HOME/client.ts lib/client.ts
+# add inductor using shared queue
+inductor add --mqhost activemq \
+--dns on \
+--debug on \
+--daq_enabled true \
+--collector_domain oneops_default \
+--tunnel_metrics on \
+--perf_collector_cert /etc/pki/tls/logstash/certs/logstash-forwarder.crt \
+--ip_attribute public_ip \
+--queue shared \
+--mgmt_url http://localhost:9090 \
+--logstash_cert_location /etc/pki/tls/logstash/certs/logstash-forwarder.crt \
+--logstash_hosts logstash:5000 \
+--max_consumers 10 \
+--local_max_consumers 10 \
+--authkey superuser:amqpass \
+--amq_truststore_location /opt/oneops/inductor/lib/client.ts \
+--additional_java_args \"\" \
+--env_vars \"\"
+
 
 echo "circuit init"
 cd $INDUCTOR_HOME
