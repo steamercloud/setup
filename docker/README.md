@@ -57,3 +57,5 @@ To access your new oneops instance go to `http://<ip>:3000` where _ip_ is the ip
 # Troubleshooting
 
 To access a container use `docker exec -it <container> bash` where _container_ is the name of one of the oneops containers listed in `docker-compose ps`
+
+To create local _oneops/centos7_ base image instead of using the public one from the docker hub run `docker built --rm -t oneops/centos7 .`
