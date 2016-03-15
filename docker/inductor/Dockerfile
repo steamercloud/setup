@@ -7,7 +7,6 @@ VOLUME ${OO_HOME}
 VOLUME ${INDUCTOR_HOME}/inductor
 
 WORKDIR /opt
-COPY inductor_answers inductor_answers
 COPY inductor.ini /etc/supervisord.d/inductor.ini
 COPY inductor.sh inductor.sh
 WORKDIR ${INDUCTOR_HOME}/inductor

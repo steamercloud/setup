@@ -53,9 +53,10 @@ tomcat          /usr/bin/supervisord -n -c ...   Up      0.0.0.0:8080->8080/tcp
 
 To access your new oneops instance go to `http://<ip>:3000` where _ip_ is the ip address of your docker machine which you can retrieve with  `docker-machine ip oneops-docker-machine`
 
+To create local _oneops/centos7_ base image instead of using the public one from the docker hub run `docker built --rm -t oneops/centos7 .`
 
 # Troubleshooting
 
-To access a container use `docker exec -it <container> bash` where _container_ is the name of one of the oneops containers listed in `docker-compose ps`
-
-To create local _oneops/centos7_ base image instead of using the public one from the docker hub run `docker built --rm -t oneops/centos7 .`
+- To see logs from all containers run `docker-compose logs`
+- To view deployment logs via inductor logs run `docker-compose logs inductor`
+- To access any container use `docker exec -it <container> bash` where _container_ is the name of one of the oneops containers listed in `docker-compose ps`
