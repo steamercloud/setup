@@ -3,7 +3,7 @@
 export VAGRANT_MNT="/vagrant"
 
 source /usr/local/rvm/scripts/rvm
-rvm use --default --install 1.9.3
+rvm use --default --install 2.0.0
 shift
 gem install net-ssh -v 2.9.1
 gem install rails
