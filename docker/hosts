@@ -1,0 +1,15 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+127.0.0.1   search
+127.0.0.1   api
+127.0.0.1   antenna
+127.0.0.1   opsmq
+127.0.0.1   daq
+127.0.0.1   opsdb
+127.0.0.1   sysdb
+127.0.0.1   kloopzappdb
+127.0.0.1   kloopzcmsdb
+127.0.0.1   cmsapi
+127.0.0.1   sensor
+127.0.0.1   activitidb
+127.0.0.1   kloopzmq
+127.0.0.1   searchmq

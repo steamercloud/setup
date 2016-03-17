@@ -1,0 +1,136 @@
+version: '2'
+
+services:
+
+  inductor:
+    container_name: inductor
+    build: inductor
+    volumes:
+      - home:/home/oneops
+      - opt:/opt/oneops
+    links:
+      - rails
+      - tomcat:api
+      - tomcat:cmsapi
+      - activemq
+
+  rails:
+    container_name: rails
+    build: rails
+    ports:
+      - "3000:3000"
+    volumes:
+      - home:/home/oneops
+      - opt:/opt/oneops
+    links:
+      - postgres:kloopzappdb
+      - tomcat:api
+      - tomcat:cmsapi
+      - tomcat:antenna
+      - tomcat:sensor
+
+  tomcat:
+    container_name: tomcat
+    build: tomcat
+    ports:
+      - "8080:8080"
+    volumes:
+      - home:/home/oneops
+    links:
+      - postgres:kloopzcmsdb
+      - postgres:activitidb
+      - activemq:amq
+      - activemq:kloopzmq
+      - activemq:searchmq
+      - activemq:opsmq
+      - cassandra:daq
+      - cassandra:opsdb
+      - cassandra:sysdb
+
+  logstash:
+    container_name: logstash
+    build: logstash
+    ports:
+      - "5000"
+    volumes:
+      - home:/home/oneops
+    links:
+      - elasticsearch
+
+  postgres:
+    container_name: postgres
+    build: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - home:/home/oneops
+      - postgres:/var/lib/pgsql/9.2/data
+
+  activemq:
+    container_name: activemq
+    build: activemq
+    ports:
+      - "61617:61617"
+    volumes:
+      - home:/home/oneops
+      - activemq:/kahadb
+
+  cassandra:
+    container_name: cassandra
+    build: cassandra
+    ports:
+      - "7000:7000"
+      - "9160:9160"
+    volumes:
+      - home:/home/oneops
+      - cassandra:/opt/cassandra/data
+    cap_add:
+      - IPC_LOCK
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+
+  elasticsearch:
+    container_name: elasticsearch
+    build: elasticsearch
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    volumes:
+      - home:/home/oneops
+      - elasticsearch:/var/lib/elasticsearch
+
+  jenkins:
+    container_name: jenkins
+    build: jenkins
+    ports:
+     - "3001:3001"
+    volumes:
+     - home:/home/oneops
+
+volumes:
+
+  home:
+    external: false
+    driver: local
+
+  opt:
+    external: false
+    driver: local
+
+  postgres:
+    external: false
+    driver: local
+
+  activemq:
+    external: false
+    driver: local
+
+  cassandra:
+    external: false
+    driver: local
+
+  elasticsearch:
+    external: false
+    driver: local
