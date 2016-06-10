@@ -20,7 +20,7 @@ Once you have these installed run:
 
 ```bash
 git clone https://github.com/oneops/setup
-cd setup/vagrant
+cd setup/vagrant-centos7
 vagrant up 
 ```
 
