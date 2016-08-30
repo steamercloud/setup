@@ -29,7 +29,6 @@ platforms:
           time /opt/cassandra/bin/nodetool compact >>LOG 2>&1
           date >>$LOG
           df -k >>$LOG
-
     cassandra-join-on-start:
       path: /tmp/t
       exec_cmd: echo "sleep 10; nodetool -h localhost join" > /etc/rc.local
@@ -51,29 +50,22 @@ platforms:
       path: /opt/.certs/logstash.crt
     logstash-key:
       path: /opt/.certs/logstash.key
-    compute/oneops.1.Compute:
-    compute:
-      size: XL
-      hosts:
-        daq: 127.0.0.1
-      additional_search_domains:
-      - $OO_GLOBAL{DOMAIN}
     volume/oneops.1.Volume:
-    volume:
-      size: 100%FREE
-      mount_point: /var/lib/cassandra
-      fstype: xfs
+      volume:
+        size: 100%FREE
+        mount_point: /var/lib/cassandra
+        fstype: xfs
     cassandra/oneops.1.Cassandra:
-    cassandra:
-      cluster: TestCluster
-      max_heap_size: default
-      seed_count: '1'
-      num_tokens: '256'
-      partitioner: org.apache.cassandra.dht.RandomPartitioner
-      version: '2.0'
-      heap_newsize: default
-      endpoint_snitch: org.apache.cassandra.locator.Propertyoneops.1.FileSnitch
-    user/oneops.1.User:
+      cassandra:
+        cluster: TestCluster
+        max_heap_size: default
+        seed_count: '1'
+        num_tokens: '256'
+        partitioner: org.apache.cassandra.dht.RandomPartitioner
+        version: '2.0'
+        heap_newsize: default
+        endpoint_snitch: org.apache.cassandra.locator.Propertyoneops.1.FileSnitch
+      user/oneops.1.User:
     ooadmin:
       home_directory_mode: '755'
       home_directory: /home/ooadmin
@@ -82,50 +74,40 @@ platforms:
       ulimit: '16384'
       username: ooadmin
     keyspace/oneops.1.Keyspace:
-    keyspace-mdb:
-      placement_strategy: NetworkTopologyStrategy
-      keyspace_name: mdb
-      replication_factor: '2'
-    keyspace-notifications:
-      keyspace_name: notifications_ks
-      placement_strategy: NetworkTopologyStrategy
-      replication_factor: '2'
-      depends:
-      - keyspace-sensor
-    keyspace-sensor:
-      placement_strategy: NetworkTopologyStrategy
-      keyspace_name: sensor_ksp
-      replication_factor: '2'
-      depends:
-      - keyspace-ldb
+      keyspace-mdb:
+        placement_strategy: NetworkTopologyStrategy
+        keyspace_name: mdb
+        replication_factor: '2'
+      keyspace-notifications:
+        keyspace_name: notifications_ks
+        placement_strategy: NetworkTopologyStrategy
+        replication_factor: '2'
+        depends:
+        - keyspace-sensor
+      keyspace-sensor:
+        placement_strategy: NetworkTopologyStrategy
+        keyspace_name: sensor_ksp
+        replication_factor: '2'
+        depends:
+        - keyspace-ldb
     secgroup/oneops.1.Secgroup:
-    secgroup: {}
+      secgroup: {}
     java/oneops.1.Java:
-    java:
-      install_dir: /usr/lib/jvm
-      version: '8'
-    keyspace-notifications:
-      keyspace_name: notifications_ks
-      placement_strategy: NetworkTopologyStrategy
-      replication_factor: '2'
-     depends:
-      - keyspace-sensor
-    keyspace-sensor:
-       placement_strategy: NetworkTopologyStrategy
-       keyspace_name: sensor_ksp
-       replication_factor: '2'
+      java:
+        install_dir: /usr/lib/jvm
+        version: '8'
     job/oneops.1.Job:
-    job:
-      hour: '14'
-      month: '*'
-      weekday: '5'
-      description: compact
-      cmd: /opt/oneops/cassanandra_compact.sh
-      user: root
-      day: '*'
-      minute: '40'
+      job:
+        hour: '14'
+        month: '*'
+        weekday: '5'
+        description: compact
+        cmd: /opt/oneops/cassanandra_compact.sh
+        user: root
+        day: '*'
+        minute: '40'
     daemon/oneops.1.Daemon:
-    daemon-cassandra:
-      service_name: cassandra
-      control_script_location: /etc/init.d/cassandra
+      daemon-cassandra:
+        service_name: cassandra
+        control_script_location: /etc/init.d/cassandra
 
