@@ -210,6 +210,12 @@ platforms:
           as_user: root
           as_group: root
           location: $OO_LOCAL{distbase}/oneops-$OO_LOCAL{version}.tar.gz
+          configure: "bash 'update_es_templates' do\r\n  code <<-EOH\r\n    cd $OO_LOCAL{install-dir}/current/oneops/dist\r\n
+                               \   rm -rf /tmp/es/\r\n    unzip search.jar es/templates/*.json -d /tmp/\r\n
+                               \   curl -d @/tmp/es/templates/cms_template.json -X PUT http://localhost:9200/_template/cms_template\r\n
+                               \   curl -d @/tmp/es/templates/cost_template.json -X PUT http://localhost:9200/_template/cost_template\r\n
+                               \   curl -d @/tmp/es/templates/event_template.json -X PUT http://localhost:9200/_template/event_template\r\n
+                               \ EOH\r\nend"
           repository: '*Using full RepoURL*'
           version: $OO_LOCAL{version}
           url: $OO_LOCAL{distbase}/oneops-search-$OO_LOCAL{version}.tar.gz
