@@ -1,36 +1,6 @@
 ---
 variables:
-  DISTBASE: '*change me*'
-  CMS-DB-PASS: '::ENCRYPTED::'
-  AMQPASS: '::ENCRYPTED::'
-  DOMAIN: '**changeme**'
-  ECV-SECRET: '::ENCRYPTED::'
-  DATA-RETRY-DIR: /mnt/retry/
-  API-USER: '**changeme'
-  API-SECRET: '::ENCRYPTED::'
-  TOMCATGCLOG: /log/apache-tomcat/gc-tomcat7.log
-  INSTALL-DIR: /usr/local/oneops
-  CMS-DB-HOST: '**cmsdb.changeme**'
-  TOMCATLOGLOCATION: /log/tomcat
-  DOMAIN-ALIAS: '**changeme**'
-  TOMCAT-ACCESS-LOG-FORMAT: '%h %{X-Cms-User}i %{X-Cms-Scope}i %{NSC-Client-IP}i %l%u %t &quot;%r&quot; %s %b %D %F'
-  CMS-DB-DES-KEY: '::ENCRYPTED::'
-  TOMCATHEAPDUMPPATH: /mnt/cms_heapdump.hprof
-  SENSORPOOLSIZE: '3'
-  ECV-USER: '**changeme**'
-  CMS-DB-USER: changeme
-  CMS-DES-FILE-LOCATION: /usr/local/oneops/certs/oo.key
-  SEARCH-AMQ-PASS: '::ENCRYPTED::'
-  SEARCH-AMQ-USER: '**changeme**'
-  VERSION: 16.06.24-RC1
-  BACKUP-HOST : '**changeme**'
-  AMQDBNAME: 'amqdb'
-  AMQDBUSER: 'amqdb'
-  AMQDBPASS: '::ENCRYPTED::'
-  ACTIVITI-DB-PASS: '::ENCRYPTED::'
-  ACTIVITI-DB-USER: 'activiti'
-  DAQ-DB: 'daqdb'
-  SENSOR-POOL-SIZE : '1'
+
 platforms:
     cmsdb:
      pack: oneops/postgresql:1
