@@ -1,0 +1,52 @@
+import:
+- https://raw.githubusercontent.com/oneops/setup/master/design/adapter-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/admin-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/amq-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/antenna-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/cmsdb-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/controller-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/daq-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/display-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/inductor-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/opamp-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/opsmq-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/search-logs-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/search-reports-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/searchdb-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/searchmq-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/sensor-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/transistor-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/transmitter-design.yaml
+
+variables:
+  DISTBASE: '*change me*'
+  CMS-DB-PASS: '::ENCRYPTED::'
+  AMQPASS: '::ENCRYPTED::'
+  DOMAIN: '**changeme**'
+  ECV-SECRET: '::ENCRYPTED::'
+  DATA-RETRY-DIR: /mnt/retry/
+  API-USER: '**changeme'
+  API-SECRET: '::ENCRYPTED::'
+  TOMCATGCLOG: /log/apache-tomcat/gc-tomcat7.log
+  INSTALL-DIR: /usr/local/oneops
+  CMS-DB-HOST: '**cmsdb.changeme**'
+  TOMCATLOGLOCATION: /log/tomcat
+  DOMAIN-ALIAS: '**changeme**'
+  TOMCAT-ACCESS-LOG-FORMAT: '%h %{X-Cms-User}i %{X-Cms-Scope}i %{NSC-Client-IP}i %l%u %t &quot;%r&quot; %s %b %D %F'
+  CMS-DB-DES-KEY: '::ENCRYPTED::'
+  TOMCATHEAPDUMPPATH: /mnt/cms_heapdump.hprof
+  SENSORPOOLSIZE: '3'
+  ECV-USER: '**changeme**'
+  CMS-DB-USER: changeme
+  CMS-DES-FILE-LOCATION: /usr/local/oneops/certs/oo.key
+  SEARCH-AMQ-PASS: '::ENCRYPTED::'
+  SEARCH-AMQ-USER: '**changeme**'
+  VERSION: 16.06.24-RC1
+  BACKUP-HOST : '**changeme**'
+  AMQDBNAME: 'amqdb'
+  AMQDBUSER: 'amqdb'
+  AMQDBPASS: '::ENCRYPTED::'
+  ACTIVITI-DB-PASS: '::ENCRYPTED::'
+  ACTIVITI-DB-USER: 'activiti'
+  DAQ-DB: 'daqdb'
+  SENSOR-POOL-SIZE : '1'
