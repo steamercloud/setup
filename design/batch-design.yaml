@@ -1,0 +1,131 @@
+---
+platforms:
+ batch:
+     pack: oneops/custom:1
+     major_version: '1'
+     variables:
+       curator_version: 3.3.0
+       es_py_version: 1.6.0
+       pip_version: 1.2.1
+       urllib3_version: 1.8.3
+       click_version: '3.3'
+       log_close_days: '15'
+       log_delete_days: '20'
+       cms_index_close_weeks: '10'
+       cms_index_delete_weeks: '15'
+     components:
+       artifact/oneops.1.Artifact:
+         artifact-click:
+           install_dir: /app/click
+           should_expand: 'false'
+           location: https://pypi.python.org/packages/source/c/click/click-$OO_LOCAL{click_version}.tar.gz
+           configure: execute "sudo pip install /app/click/releases/$OO_LOCAL{click_version}/click-$OO_LOCAL{click_version}.tar.gz"
+           repository: thirdparty
+           version: $OO_LOCAL{click_version}
+           as_user: root
+           as_group: root
+           depends:
+           - artifact-pip
+         artifact-es-py:
+           install_dir: /app/elasticsearch-py
+           should_expand: 'false'
+           location: https://github.com/elastic/elasticsearch-py/archive/$OO_LOCAL{es_py_version}.zip
+           configure: execute "sudo pip install /app/elasticsearch-py/releases/$OO_LOCAL{es_py_version}/elasticsearch-py-$OO_LOCAL{es_py_version}.zip"
+           repository: thirdparty
+           version: $OO_LOCAL{es_py_version}
+           as_user: root
+           as_group: root
+           depends:
+           - artifact-click
+           - artifact-pip
+           - artifact-urllib3
+         artifact-pip:
+           install_dir: /app/pip
+           should_expand: 'true'
+           location: http://pypi.python.org/packages/source/p/pip/pip-$OO_LOCAL{pip_version}.tar.gz
+           configure: execute "cd /app/pip/releases/$OO_LOCAL{pip_version}/pip-$OO_LOCAL{pip_version}; sudo python setup.py install"
+           repository: thirdparty
+           version: $OO_LOCAL{pip_version}
+           as_user: root
+           as_group: root
+         artifact-urllib3:
+           install_dir: /app/urllib3
+           should_expand: 'false'
+           location: https://pypi.python.org/packages/source/u/urllib3/urllib3-$OO_LOCAL{urllib3_version}.tar.gz
+           configure: execute "sudo pip install /app/urllib3/releases/$OO_LOCAL{urllib3_version}/urllib3-$OO_LOCAL{urllib3_version}.tar.gz"
+           repository: thirdparty
+           version: $OO_LOCAL{urllib3_version}
+           as_user: root
+           as_group: root
+           depends:
+           - artifact-pip
+         es-curator:
+           install_dir: /app/es-curator
+           should_expand: 'false'
+           location: https://github.com/elastic/curator/archive/v$OO_LOCAL{curator_version}.tar.gz
+           configure: execute "sudo pip install /app/es-curator/releases/$OO_LOCAL{curator_version}/curator-$OO_LOCAL{curator_version}.tar.gz"
+           repository: thirdparty
+           version: $OO_LOCAL{curator_version}
+           as_user: root
+           as_group: root
+           depends:
+           - artifact-click
+           - artifact-es-py
+           - artifact-pip
+           - artifact-urllib3
+       java/oneops.1.Java:
+         java: {}
+       job/oneops.1.Job:
+         log-index-delete:
+           month: '*'
+           hour: '00'
+           weekday: '*'
+           cmd: /opt/oneops/curator/manage-logs.sh
+           day: '*'
+           user: root
+           minute: '30'
+         manage-cms-index:
+           hour: '01'
+           month: '*'
+           weekday: '*'
+           description: job to manage cms index
+           cmd: /opt/oneops/curator/manage-cms-indices.sh
+           user: root
+           day: '1'
+           minute: '30'
+       file/oneops.1.File:
+         manage-cms-indices:
+           path: /opt/oneops/curator/manage-cms-indices.sh
+           exec_cmd: chmod +x /opt/oneops/curator/manage-cms-indices.sh
+           content: |
+              #!/bin/bash
+
+              source /etc/profile.d/oneops.sh
+              cloud_status=`printenv ONEOPS_CLOUD_ADMINSTATUS`
+
+              echo "cloud_status=$cloud_status"
+              if [ $cloud_status != "primary" ]; then
+                echo "skipping because cloud status is secondary"
+                exit
+              fi
+
+              curator --host es alias --remove --name cms indices --older-than $OO_LOCAL{cms_index_close_weeks} --time-unit weeks --prefix cms --timestring '%Y-w%W'
+              curator --host es delete indices --older-than $OO_LOCAL{cms_index_delete_weeks} --time-unit weeks --prefix cms --timestring '%Y-w%W'
+              curator --host es close indices --older-than $OO_LOCAL{cms_index_close_weeks} --time-unit weeks --prefix cms --timestring '%Y-w%W'
+         manage-logs:
+           path: /opt/oneops/curator/manage-logs.sh
+           exec_cmd: chmod +x /opt/oneops/curator/manage-logs.sh
+           content: |
+              #!/bin/bash
+
+              source /etc/profile.d/oneops.sh
+              cloud_status=`printenv ONEOPS_CLOUD_ADMINSTATUS`
+
+              echo "cloud_status=$cloud_status"
+              if [ $cloud_status != "primary" ]; then
+                echo "skipping because cloud status is secondary"
+                exit
+              fi
+
+              curator --host es delete indices --older-than $OO_LOCAL{log_delete_days} --time-unit days --timestring '%Y.%m.%d'
+              curator --host es close indices --older-than $OO_LOCAL{log_close_days} --time-unit days --timestring '%Y.%m.%d'
