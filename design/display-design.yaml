@@ -1,8 +1,4 @@
 variables:
-  DISPLAY-DB-NAME: display
-  DISPLAY-DB-USERNAME: display
-  DISPLAY-DB-PASSWORD: display
-  DISPLAY-RAILS-ENV: production
 
 platforms:
 # links to
@@ -111,6 +107,13 @@ platforms:
                            'OODB_PASSWORD' => "$OO_GLOBAL{DISPLAY-DB-PASSWORD}"})
               cwd "#{base_dir}"
             end
+
+     lb/oneops.1.Lb:
+       lb:
+        listeners:
+         - tcp 5432 tcp 5432
+        ecv_map:
+          '5432': GET /NOTUSED
 
 
   display:

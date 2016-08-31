@@ -35,6 +35,13 @@ platforms:
           dbname: amqdb
           username: $OO_LOCAL{dbuser}
 
+      lb/oneops.1.Lb:
+        lb:
+          listeners:
+             - tcp 5432 tcp 5432
+          ecv_map:
+              '5432': GET /NOTUSED
+
   # amq
   amq:
     pack: oneops/activemq:1
