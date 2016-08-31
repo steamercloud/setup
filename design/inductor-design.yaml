@@ -7,7 +7,7 @@ platforms:
       oneops-admin-version: 1.0.0
       circuit-oneops-1-version: changeme
       truststore-password: '::ENCRYPTED::'
-      truststore-location: $OO_LOCAL{inductor-dir}/inductor/lib/client.ts
+      truststore-location: /opt/oneops/inductor/lib/client.ts
       domain: changeme
     components:
       compute/oneops.1.Compute:
