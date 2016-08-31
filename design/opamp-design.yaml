@@ -135,8 +135,8 @@ platforms:
              API_ACESS_CONTROL: permitAll
              SEARCHMQ_USER: $OO_LOCAL{search-amq-user}
              SEARCHMQ_PASS: $OO_LOCAL{search-amq-pass}
-             OPAMP_ANTENNA_RETRY_DIR: $OO_LOCAL{opamp-antenna-retry-dir}
-             OPAMP_SEARCH_RETRY_DIR: $OO_LOCAL{opamp-search-retry-dir}
+             OPAMP_ANTENNA_RETRY_DIR: $OO_LOCAL{antenna-retry-dir}
+             OPAMP_SEARCH_RETRY_DIR: $OO_LOCAL{search-retry-dir}
            port: '8080'
            mem_max: 4096m
            server_port: '8005'

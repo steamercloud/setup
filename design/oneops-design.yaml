@@ -7,7 +7,6 @@ import:
 - https://raw.githubusercontent.com/oneops/setup/master/design/controller-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/daq-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/display-design.yaml
-- https://raw.githubusercontent.com/oneops/setup/master/design/inductor-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/opamp-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/opsmq-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/search-logs-design.yaml
@@ -43,6 +42,7 @@ variables:
   SEARCH-AMQ-USER: '**changeme**'
   VERSION: 16.06.24-RC1
   BACKUP-HOST : '**changeme**'
+  AMQUSER: 'superuser'
   AMQDBNAME: 'amqdb'
   AMQDBUSER: 'amqdb'
   AMQDBPASS: '::ENCRYPTED::'
@@ -50,3 +50,15 @@ variables:
   ACTIVITI-DB-USER: 'activiti'
   DAQ-DB: 'daqdb'
   SENSOR-POOL-SIZE : '1'
+  DISPLAY-DB-NAME: display
+  DISPLAY-DB-USERNAME: display
+  DISPLAY-DB-PASSWORD: '::ENCRYPTED::'
+  DISPLAY-RAILS-ENV: enterprise
+  SEARCHMQDBUSER: searchmq
+  SEARCHMQDBPASSWORD: '::ENCRYPTED::'
+
+
+
+
+
+

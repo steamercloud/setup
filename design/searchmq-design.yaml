@@ -1,7 +1,5 @@
 ---
 variables:
-SEARCHMQDBUSER: searchmq
-SEARCHMQDBPASSWORD: '::ENCRYPTED::'
 
 platforms:
 
@@ -37,6 +35,13 @@ platforms:
           password: $OO_LOCAL{dbpass}
           dbname: amqdb
           username: $OO_LOCAL{dbuser}
+
+      lb/oneops.1.Lb:
+        lb:
+         listeners:
+          - tcp 5432 tcp 5432
+         ecv_map:
+           '5432': GET /NOTUSED
 
   # amq
   searchmq:

@@ -254,7 +254,7 @@ platforms:
           as_user: tomcat
           as_group: tomcat
           location: com.espertech:esper:jar
-          repository: $OO_LOCAL{esper-respository}
+          repository: $OO_LOCAL{esper-repository}
           url: $OO_CLOUD{nexus}
           version: $OO_LOCAL{esper-version}
           should_expand: 'false'

@@ -204,3 +204,10 @@ platforms:
            user: root
            day: '*'
            minute: '12'
+
+       lb/oneops.1.Lb:
+         lb:
+          listeners:
+            - tcp 5432 tcp 5432
+          ecv_map:
+            '5432': GET /NOTUSED
