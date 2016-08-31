@@ -209,7 +209,7 @@ platforms:
           path: /nexus
           as_user: root
           as_group: root
-          location: $OO_LOCAL{distbase}/oneops-$OO_LOCAL{version}.tar.gz
+          location: $OO_LOCAL{distbase}/oneops-search-$OO_LOCAL{version}.tar.gz
           configure: "bash 'update_es_templates' do\r\n  code <<-EOH\r\n    cd $OO_LOCAL{install-dir}/current/oneops/dist\r\n
                                \   rm -rf /tmp/es/\r\n    unzip search.jar es/templates/*.json -d /tmp/\r\n
                                \   curl -d @/tmp/es/templates/cms_template.json -X PUT http://localhost:9200/_template/cms_template\r\n

@@ -2,35 +2,40 @@
 variables:
 
 platforms:
- reports:
+reports:
     pack: oneops/apache:1
+    major_version: '1'
     links:
     - searchdb
+    variables:
+      install-dir: $OO_GLOBAL{INSTALL-DIR}
     components:
       website/oneops.1.Website:
         website-reports:
           server_name: reports.$OO_GLOBAL{env_name}.oneops.com
           port: '80'
           directives: |
-           Options Indexes FollowSymLinks MultiViews
-                  AllowOverride None
-                  Order allow,deny
-                  allow from all
-          root: /opt/oneops/kibana
+            Options Indexes FollowSymLinks MultiViews
+                   AllowOverride None
+                   Order allow,deny
+                   allow from all
           extra: |
-           <Directory /opt/oneops/kibana>
-                  Allow from all
-                  Options -MultiViews
-            </Directory>
+            <Directory /opt/oneops/kibana>
+                   Allow from all
+                   Options -MultiViews
+             </Directory>
+          root: /opt/oneops/kibana
       artifact/oneops.1.Artifact:
         kibana:
           install_dir: /opt/oneops
           password: '::ENCRYPTED::'
           as_user: root
-          restart: |
-
+          restart: ''
           as_group: root
           location: https://download.elasticsearch.org/kibana/kibana/kibana-3.0.1.tar.gz
+          configure: "bash 'update_kibana_config' do\r\n  code <<-EOH\r\n cd $OO_LOCAL{install-dir}/kibana\r\n
+            \ sed -i 's/localhost:9200/searchdb.$OO_GLOBAL{DOMAIN}:9200/g' config.js\r\n
+            \ EOH\r\nend"
           repository: thirdparty
           version: $OO_LOCAL{appVersion}
           url: $OO_CLOUD{nexus}/nexus/
