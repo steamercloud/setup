@@ -16,6 +16,7 @@ import:
 - https://raw.githubusercontent.com/oneops/setup/master/design/sensor-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/transistor-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/transmitter-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/batch-design.yaml
 
 variables:
   DISTBASE: '*change me*'
