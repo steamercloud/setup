@@ -109,6 +109,7 @@ platforms:
           url: https://web.$OO_LOCAL{domain}
           queue: $OO_CLOUD{QUEUE}
           collector_domain: $OO_LOCAL{domain}
+          user: root
           attachments:
             ssl-certificate:
               headers: ''
