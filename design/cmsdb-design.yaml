@@ -9,6 +9,8 @@ platforms:
         install-dir: $OO_GLOBAL{INSTALL-DIR}
         cms-db-version: $OO_GLOBAL{VERSION}
         backup-host: $OO_GLOBAL{BACKUP-HOST}
+        cms-db-user: $OO_GLOBAL{CMS-DB-USER}
+        cms-db-pass: $OO_GLOBAL{CMS-DB-PASS}
         perf-user-pass: '::ENCRYPTED::'
         cmsdbpass: '::ENCRYPTED::'
      components:
@@ -23,7 +25,7 @@ platforms:
              tcp_keepalives_idle: '60'
              tcp_keepalives_interval: '5'
              max_connections: '1000'
-           version: '9.1'
+           version: '9.2'
        user/oneops.1.User:
         ooadmin:
           home_directory_mode: '755'
@@ -38,8 +40,8 @@ platforms:
        database/oneops.1.Database:
          database:
            dbname: kloopzdb
-           username: kloopzcm
-           password: changeme
+           username: $OO_LOCAL{cms-db-user}
+           password: $OO_LOCAL{cms-db-pass}
        artifact/oneops.1.Artifact:
          db-artifact:
            install_dir: $OO_LOCAL{install-dir}
@@ -59,7 +61,7 @@ platforms:
               code <<-EOH
                tar zxf $OO_LOCAL{install-dir}/current/cms-db-pkg/db.tar.gz --no-same-owner --no-same-permissions
                cd db
-               ./autoinstall-db.sh > autoinstall-db.log 2>&1
+               ./autoinstall-db.sh $OO_LOCAL{cms-db-user} $OO_LOCAL{cms-db-pass} > autoinstall-db.log 2>&1
               EOH
             end
            as_group: root
