@@ -142,6 +142,5 @@ platforms:
         java: {}
       user/oneops.1.User:
         ooadmin:
-          authorized_keys:
           description: /home/ooadmin
           username: ooadmin
