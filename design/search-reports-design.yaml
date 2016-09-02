@@ -2,6 +2,8 @@
 variables:
 
 platforms:
+ searchdb:
+    pack: oneops/es:1
  reports:
     pack: oneops/apache:1
     links:
