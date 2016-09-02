@@ -2,6 +2,8 @@
 variables:
 
 platforms:
+ searchdb:
+    pack: oneops/es:1
  reports:
     pack: oneops/apache:1
     links:
@@ -41,7 +43,6 @@ platforms:
                       end
           location: https://download.elasticsearch.org/kibana/kibana/kibana-3.0.1.tar.gz
           repository: thirdparty
-          version: $OO_LOCAL{appVersion}
           url: $OO_CLOUD{nexus}/nexus/
           username: gecnexus
       user/oneops.1.User:
