@@ -43,6 +43,7 @@ variables:
   SEARCH-AMQ-USER: '**changeme**'
   VERSION: 16.06.24-RC1
   BACKUP-HOST : '**changeme**'
+  AMQHOST: 'wire'
   AMQUSER: 'superuser'
   AMQDBNAME: 'amqdb'
   AMQDBUSER: 'amqdb'

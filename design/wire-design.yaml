@@ -3,8 +3,8 @@ variables:
 
 platforms:
 
-# amqdb
-  amqdb:
+# wiredb
+  wiredb:
     pack: oneops/postgresql:1
     major_version: 1
     variables:
@@ -32,7 +32,7 @@ platforms:
       database/oneops.1.Database:
         database:
           password: $OO_LOCAL{dbpass}
-          dbname: amqdb
+          dbname: wiredb
           username: $OO_LOCAL{dbuser}
 
       lb/oneops.1.Lb:
@@ -42,12 +42,12 @@ platforms:
           ecv_map:
               '5432': GET /NOTUSED
 
-  # amq
-  amq:
+  # wire
+  wire:
     pack: oneops/activemq:1
     major_version: 1
     links:
-      - amqdb
+      - wiredb
     variables:
       distbase: $OO_GLOBAL{DISTBASE}
       version: $OO_GLOBAL{VERSION}
@@ -172,7 +172,7 @@ platforms:
                   </bean>
 
                  <bean id="postgres-ds" class="org.postgresql.ds.PGPoolingDataSource" destroy-method="close">
-                    <property name="serverName" value="amqdb"/>
+                    <property name="serverName" value="wiredb"/>
                     <property name="databaseName" value="$OO_LOCAL{dbname}"/>
                     <property name="portNumber" value="5432"/>
                     <property name="user" value="$OO_LOCAL{dbuser}"/>
