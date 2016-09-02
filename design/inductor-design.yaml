@@ -99,7 +99,7 @@ platforms:
             -----BEGIN CERTIFICATE-----
             -----END CERTIFICATE-----
           max: '100'
-          mqhost: amq.$OO_LOCAL{domain}
+          mqhost: wire.$OO_LOCAL{domain}
           logstash_hosts: eslogs.$OO_LOCAL{domain}:35854
           cert: |
             -----BEGIN CERTIFICATE-----

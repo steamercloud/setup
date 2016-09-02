@@ -8,7 +8,6 @@ platforms:
      pack: oneops/tomcat:1
      links:
      - cmsdb
-     - transmitter
      variables:
         deploycontext: transistor
         notifypass: '::ENCRYPTED::'
@@ -33,6 +32,7 @@ platforms:
         search-amq-user: $OO_GLOBAL{SEARCH-AMQ-USER}
         search-amq-pass: $OO_GLOBAL{SEARCH-AMQ-PASS}
         domain: $OO_GLOBAL{DOMAIN}
+        amqhost: $OO_GLOBAL{AMQHOST}
      components:
        compute/oneops.1.Compute:
          compute:
@@ -113,6 +113,7 @@ platforms:
            environment:
              KLOOPZ_NOTIFY_URL: https://$OO_LOCAL{domain-alias}/notify
              KLOOPZ_NOTIFY_PASS: $OO_LOCAL{notifypass}
+             KLOOPZ_AMQ_HOST: $OO_LOCAL{amqhost}
              KLOOPZ_AMQ_PASS: $OO_LOCAL{amqpass}
              CMS_DB_HOST: $OO_LOCAL{cms-db-host}
              CMS_DB_USER: $OO_LOCAL{cms-db-user}

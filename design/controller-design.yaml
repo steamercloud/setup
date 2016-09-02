@@ -2,7 +2,7 @@
 variables:
 
 platforms:
-  amq:
+  wire:
     pack: oneops/activemq:1
   activitidb:
     pack: oneops/postgresql:1
@@ -15,7 +15,7 @@ platforms:
     links:
          - cmsdb
          - activitidb
-         - amq
+         - wire
          - searchdb
     variables:
         deploycontext: controller
@@ -46,6 +46,7 @@ platforms:
         search-amq-user: $OO_GLOBAL{SEARCH-AMQ-USER}
         search-amq-pass: $OO_GLOBAL{SEARCH-AMQ-PASS}
         domain: $OO_GLOBAL{DOMAIN}
+        amqhost: $OO_GLOBAL{AMQHOST}
     components:
       compute/oneops.1.Compute:
         compute:
@@ -131,6 +132,7 @@ platforms:
             KLOOPZ_NOTIFY_URL: https://$OO_LOCAL{domain-alias}/notify
             KLOOPZ_NOTIFY_PASS: $OO_LOCAL{notifypass}
             KLOOPZ_AMQ_PASS: $OO_LOCAL{amqpass}
+            KLOOPZ_AMQ_HOST: $OO_LOCAL{amqhost}
             CMS_DB_HOST: $OO_LOCAL{cms-db-host}
             CMS_DB_USER: $OO_LOCAL{cms-db-user}
             CMS_DB_PASS: $OO_LOCAL{cms-db-pass}
