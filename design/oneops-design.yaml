@@ -35,7 +35,6 @@ variables:
   TOMCAT-ACCESS-LOG-FORMAT: '%h %{X-Cms-User}i %{X-Cms-Scope}i %{NSC-Client-IP}i %l%u %t &quot;%r&quot; %s %b %D %F'
   CMS-DB-DES-KEY: '::ENCRYPTED::'
   TOMCATHEAPDUMPPATH: /mnt/cms_heapdump.hprof
-  SENSORPOOLSIZE: '3'
   ECV-USER: '**changeme**'
   CMS-DB-USER: changeme
   CMS-DES-FILE-LOCATION: /usr/local/oneops/certs/oo.key
