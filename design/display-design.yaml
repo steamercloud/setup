@@ -60,7 +60,7 @@ platforms:
         database:
           dbname: $OO_GLOBAL{DISPLAY-DB-NAME}
           username: $OO_GLOBAL{DISPLAY-DB-USERNAME}
-          password: $OO_GLOBAL{DISPLAY-DB-PASSWORD}
+          password: 'changeme'
 
       artifact/oneops.1.Artifact:
         display:
