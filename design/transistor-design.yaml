@@ -12,7 +12,7 @@ platforms:
         deploycontext: transistor
         notifypass: '::ENCRYPTED::'
         version: $OO_GLOBAL{VERSION}
-        ecv-user: $$OO_GLOBAL{ECV-USER}
+        ecv-user: $OO_GLOBAL{ECV-USER}
         ecv-secret: $OO_GLOBAL{ECV-SECRET}
         tomcatloglocation: $OO_GLOBAL{TOMCATLOGLOCATION}
         tomcatheapdumppath: $OO_GLOBAL{TOMCATHEAPDUMPPATH}
