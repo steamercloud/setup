@@ -65,6 +65,7 @@ platforms:
           - 22 22 tcp 0.0.0.0/0
           - 61616 61617 tcp 0.0.0.0/0
           - 8161 8162 tcp 0.0.0.0/0
+
       compute/oneops.1.Compute:
         compute:
           size: L
@@ -81,6 +82,11 @@ platforms:
           passphrase:
           cert:
           key:
+      java/oneops.1.Java:
+        java:
+          install_dir: /usr/lib/jvm
+          jrejdk: server-jre
+          version: '8'
       keystore/oneops.1.Keystore:
         broker-keystore:
           keystore_password: $OO_LOCAL{broker-cert-pass}

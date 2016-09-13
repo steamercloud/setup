@@ -82,7 +82,11 @@ platforms:
       queue/oneops.1.Queue:
         queue-search:
           queuename: search.stream
-
+      java/oneops.1.Java:
+        java:
+          install_dir: /usr/lib/jvm
+          jrejdk: server-jre
+          version: '8'
       activemq/oneops.1.Activemq:
         activemq:
           version: 5.13.2
