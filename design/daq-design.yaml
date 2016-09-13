@@ -214,8 +214,8 @@ platforms:
         deploycontext: daq
         version: daq-api-$OO_GLOBAL{VERSION}
         notifypass: '::ENCRYPTED::'
-        ecv-user: $$OO_GLOBAL{ECV-USER}
-        ecv-secret: $$OO_GLOBAL{ECV-SECRET}
+        ecv-user: $OO_GLOBAL{ECV-USER}
+        ecv-secret: $OO_GLOBAL{ECV-SECRET}
         tomcatloglocation: $OO_GLOBAL{TOMCATLOGLOCATION}
         tomcatheapdumppath: $OO_GLOBAL{TOMCATHEAPDUMPPATH}
         tomcatgclog: $OO_GLOBAL{TOMCATGCLOG}
