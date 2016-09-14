@@ -12,7 +12,6 @@ platforms:
         cms-db-user: $OO_GLOBAL{CMS-DB-USER}
         cms-db-pass: $OO_GLOBAL{CMS-DB-PASS}
         perf-user-pass: '::ENCRYPTED::'
-        cmsdbpass: '::ENCRYPTED::'
      components:
        compute/oneops.1.Compute:
           compute:
@@ -145,8 +144,8 @@ platforms:
                   type: pg
                   host: localhost
                   port: 5432
-                  user: kloopzcm
-                  pass: $OO_LOCAL{cmsdbpass}
+                  user: $OO_LOCAL{cms-db-user}
+                  pass: $OO_LOCAL{cms-db-pass}
                   db: kloopzdb
 
                 metrics:
@@ -164,8 +163,8 @@ platforms:
                  type: pg
                  host: localhost
                  port: 5432
-                 user: kloopzcm
-                 pass: $OO_LOCAL{cmsdbpass}
+                 user: $OO_LOCAL{cms-db-user}
+                 pass: $OO_LOCAL{cms-db-pass}
                  db: kloopzdb
 
                metrics:
@@ -183,8 +182,8 @@ platforms:
                  type: pg
                  host: localhost
                  port: 5432
-                 user: kloopzcm
-                 pass: $OO_LOCAL{cmsdbpass}
+                 user: $OO_LOCAL{cms-db-user}
+                 pass: $OO_LOCAL{cms-db-pass}
                  db: kloopzdb
 
                metrics:
