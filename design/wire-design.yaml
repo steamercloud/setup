@@ -32,7 +32,7 @@ platforms:
       database/oneops.1.Database:
         database:
           password: $OO_LOCAL{dbpass}
-          dbname: wiredb
+          dbname: $OO_LOCAL{dbname}
           username: $OO_LOCAL{dbuser}
 
       lb/oneops.1.Lb:
@@ -131,7 +131,7 @@ platforms:
           environment:
             KLOOPZ_AMQ_PASS: $OO_LOCAL{amqpass}
           brokerusername: system
-          adminconsolekeystore: file:$OO_LOCAL{broker-cert-location}
+          adminconsolekeystore: $OO_LOCAL{broker-cert-location}
           transportconnector:
             nio: nio://0.0.0.0:61616
             nio+ssl: nio+ssl://0.0.0.0:61617
