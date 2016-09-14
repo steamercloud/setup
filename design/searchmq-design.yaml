@@ -95,7 +95,7 @@ platforms:
           version: 5.13.2
           brokerauthenabled: 'true'
           maxmemory: '4096'
-          adminconsolesecure: 'false'
+          adminconsolesecure: 'true'
           initmemory: '4096'
           adminconsolekeystorepassword: $OO_LOCAL{adminpass}
           brokerpassword: $OO_LOCAL{broker-cert-pass}
