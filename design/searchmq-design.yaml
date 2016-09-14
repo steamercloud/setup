@@ -153,7 +153,7 @@ platforms:
                         <property name="tcpKeepAlive" value="true"/>
                     </bean>
 
-                    <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+                    <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                         <property name="supportedMediaTypes" value="application/json"/>
                     </bean>
 
