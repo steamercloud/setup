@@ -32,7 +32,7 @@ platforms:
       database/oneops.1.Database:
         database:
           password: $OO_LOCAL{dbpass}
-          dbname: wiredb
+          dbname: $OO_LOCAL{dbname}
           username: $OO_LOCAL{dbuser}
 
       lb/oneops.1.Lb:
@@ -89,7 +89,7 @@ platforms:
           version: '8'
       keystore/oneops.1.Keystore:
         broker-keystore:
-          keystore_password: $OO_LOCAL{broker-cert-pass}
+          keystore_password: 'changeme'
           keystore_filename: $OO_LOCAL{broker-cert-location}
       topic/oneops.1.Topic:
         topic-cms-all:
@@ -127,11 +127,11 @@ platforms:
           initmemory: '4096'
           adminconsolekeystorepassword: $OO_LOCAL{adminpass}
           brokerpassword: $OO_LOCAL{broker-cert-pass}
-          adminpassword: $OO_LOCAL{adminpass}
+          adminpassword: 'changeme'
           environment:
             KLOOPZ_AMQ_PASS: $OO_LOCAL{amqpass}
           brokerusername: system
-          adminconsolekeystore: file:$OO_LOCAL{broker-cert-location}
+          adminconsolekeystore: $OO_LOCAL{broker-cert-location}
           transportconnector:
             nio: nio://0.0.0.0:61616
             nio+ssl: nio+ssl://0.0.0.0:61617
