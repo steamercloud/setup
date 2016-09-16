@@ -13,6 +13,10 @@ platforms:
        log_delete_days: '20'
        cms_index_close_weeks: '10'
        cms_index_delete_weeks: '15'
+       ES_HOST: 'search:9200'
+       distbase: $OO_GLOBAL{DISTBASE}
+       version: $OO_GLOBAL{VERSION}
+       install-dir: $OO_GLOBAL{INSTALL-DIR}
      components:
        artifact/oneops.1.Artifact:
          artifact-click:
@@ -73,6 +77,33 @@ platforms:
            - artifact-es-py
            - artifact-pip
            - artifact-urllib3
+         artifact-cost:
+           install_dir: $OO_LOCAL{install-dir}
+           path: /nexus
+           password: '::ENCRYPTED::'
+           as_user: ooadmin
+           as_group: ooadmin
+           location: $OO_LOCAL{distbase}/oneops-batch-$OO_LOCAL{version}.tar.gz
+           configure: |
+              bash 'install cost' do
+                code <<-EOH
+                  cd $OO_LOCAL{install-dir}/releases/$OO_LOCAL{version}/cost
+                  curl -O download.elasticsearch.org/stream2es/stream2es
+                  chmod +x stream2es
+                  gem install time_diff
+                  EOH
+                not_if { ::File.exists?(extract_path) }
+              end
+
+              cron 'schedule cost job' do
+                hour '9'
+                minute '0'
+                command 'cd $OO_LOCAL{install-dir}/releases/$OO_LOCAL{version}/cost && bash -l batch-script.sh'
+              end
+           repository: '*Using full RepoURL*'
+           version: $OO_LOCAL{version}
+           url: $OO_LOCAL{distbase}/oneops-batch-$OO_LOCAL{version}.tar.gz
+           username: not_required
        java/oneops.1.Java:
          java: {}
        job/oneops.1.Job:
