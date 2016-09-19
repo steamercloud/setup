@@ -44,7 +44,7 @@ variables:
   BACKUP-HOST : '**changeme**'
   AMQHOST: 'wire'
   AMQUSER: 'superuser'
-  AMQDBNAME: 'amqdb'
+  AMQDBNAME: 'wiredb'
   AMQDBUSER: 'amqdb'
   AMQDBPASS: '::ENCRYPTED::'
   ACTIVITI-DB-PASS: '::ENCRYPTED::'
@@ -55,6 +55,7 @@ variables:
   DISPLAY-DB-USERNAME: display
   DISPLAY-DB-PASSWORD: '::ENCRYPTED::'
   DISPLAY-RAILS-ENV: enterprise
+  SEARCHMQDB: searchmq
   SEARCHMQDBUSER: searchmq
   SEARCHMQDBPASSWORD: '::ENCRYPTED::'
 

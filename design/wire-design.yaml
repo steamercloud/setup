@@ -32,7 +32,7 @@ platforms:
       database/oneops.1.Database:
         database:
           password: $OO_LOCAL{dbpass}
-          dbname: wiredb
+          dbname: $OO_LOCAL{dbname}
           username: $OO_LOCAL{dbuser}
 
       lb/oneops.1.Lb:
@@ -65,6 +65,7 @@ platforms:
           - 22 22 tcp 0.0.0.0/0
           - 61616 61617 tcp 0.0.0.0/0
           - 8161 8162 tcp 0.0.0.0/0
+
       compute/oneops.1.Compute:
         compute:
           size: L
@@ -81,9 +82,14 @@ platforms:
           passphrase:
           cert:
           key:
+      java/oneops.1.Java:
+        java:
+          install_dir: /usr/lib/jvm
+          jrejdk: server-jre
+          version: '8'
       keystore/oneops.1.Keystore:
         broker-keystore:
-          keystore_password: $OO_LOCAL{broker-cert-pass}
+          keystore_password: 'changeme'
           keystore_filename: $OO_LOCAL{broker-cert-location}
       topic/oneops.1.Topic:
         topic-cms-all:
@@ -121,11 +127,11 @@ platforms:
           initmemory: '4096'
           adminconsolekeystorepassword: $OO_LOCAL{adminpass}
           brokerpassword: $OO_LOCAL{broker-cert-pass}
-          adminpassword: $OO_LOCAL{adminpass}
+          adminpassword: 'changeme'
           environment:
             KLOOPZ_AMQ_PASS: $OO_LOCAL{amqpass}
           brokerusername: system
-          adminconsolekeystore: file:$OO_LOCAL{broker-cert-location}
+          adminconsolekeystore: $OO_LOCAL{broker-cert-location}
           transportconnector:
             nio: nio://0.0.0.0:61616
             nio+ssl: nio+ssl://0.0.0.0:61617
@@ -183,7 +189,7 @@ platforms:
                     <property name="tcpKeepAlive" value="true"/>
                 </bean>
 
-                  <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
+                  <bean id="jsonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
                     <property name="supportedMediaTypes" value="application/json"/>
                   </bean>
 
