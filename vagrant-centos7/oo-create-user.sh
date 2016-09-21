@@ -1,6 +1,4 @@
-echo "*************"
-echo "creating user"
-echo "*************"
+echo "****** creating user ******"
 export RAILS_ENV=development
 export OODB_USERNAME=kloopz
 export OODB_PASSWORD=kloopz
