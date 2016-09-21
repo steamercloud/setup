@@ -68,7 +68,7 @@ platforms:
                 source /usr/local/rvm/scripts/rvm
                 rvm use default
                 cd $OO_LOCAL{install-path}/circuit-oneops-1/current
-                circuit install
+                circuit install > /dev/null
               EOA
             end
           depends:
