@@ -16,7 +16,7 @@ platforms:
             size: L
        database/oneops.1.Database:
          database:
-           dbname: activiti
+           dbname: activitidb
            username: $OO_LOCAL{activitidbuser}
            password: $OO_LOCAL{activitidbpass}
        postgresql/oneops.1.Postgresql:
@@ -107,3 +107,9 @@ platforms:
            user: root
            day: '*'
            minute: '12'
+       lb/oneops.1.Lb:
+         lb:
+          listeners:
+            - tcp 5432 tcp 5432
+          ecv_map:
+            '5432': GET /NOTUSED
