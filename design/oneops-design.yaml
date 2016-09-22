@@ -4,6 +4,7 @@ import:
 - https://raw.githubusercontent.com/oneops/setup/master/design/wire-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/antenna-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/cmsdb-design.yaml
+- https://raw.githubusercontent.com/oneops/setup/master/design/activitidb-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/controller-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/daq-design.yaml
 - https://raw.githubusercontent.com/oneops/setup/master/design/display-design.yaml
