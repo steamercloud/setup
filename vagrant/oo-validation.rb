@@ -11,7 +11,6 @@ require 'json'
 
 def check_for_failure(response, request)
 	if response.nil? || !$?.success?
-		puts "failureeeee"
 		request == "disabling environment" ? (abort "****** failing while #{request} #{response} so aborting ******") : (abort "****** failing while #{request} #{response["errors"]} #{response} so aborting ******")
 	else
 		request == "disabling environment" ? (puts "****** success while #{request} ******") : (puts "****** success while #{request} #{response["errors"]} ******")
