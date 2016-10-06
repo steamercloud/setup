@@ -31,6 +31,10 @@ docker-compose build
 ~~~ bash
 docker-compose run --rm jenkins build
 ~~~
+- optionally pass in a build [ref]
+~~~ bash
+docker-compose run --rm jenkins build [ref]
+~~~
 - start oneops container images (oneops code is re-deployed on startup)
 ~~~ bash
 docker-compose up -d
