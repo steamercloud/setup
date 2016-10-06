@@ -28,5 +28,7 @@ export PATH=$PATH:/usr/local/bin
 
 ./oneops_build.sh "$@"
 
+ruby oo-validation.rb
+
 now=$(date +"%T")
 echo "All done at : $now"

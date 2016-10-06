@@ -26,5 +26,7 @@ cp $BUILD_BASE/dev-tools/setup-scripts/* .
 
 ./oneops_build.sh "$@"
 
+ruby oo-validation.rb
+
 now=$(date +"%T")
 echo "All done at : $now"
