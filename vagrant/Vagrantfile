@@ -82,5 +82,5 @@ Vagrant.configure(2) do |config|
    config.vm.provision :shell, path: "install-rvm.sh"
    config.vm.provision :shell, path: "install-ruby.sh"
    config.vm.provision :shell, path: "install-logstash.sh"
-   config.vm.provision :shell, path: "oo-setup.sh"
+   config.vm.provision :shell, path: "oo-setup.sh", args: ENV["oo_validation_flag"]
 end

@@ -26,12 +26,12 @@ cp $BUILD_BASE/dev-tools/setup-scripts/* .
 
 ./oneops_build.sh "$@"
 
-echo -n "Do you want to execute OneOps validation script (y/n):"
-read input
-if [ $input == "y" -o $input == "yes" ]; then
+echo "OneOps Validation flag is:"$oo_validation_flag
+
+if [ -z  $oo_validation_flag ]; then
+  echo "******** Skipping OneOps Validation ********"
+elif [ $oo_validation_flag == "y" -o $oo_validation_flag == "yes" ]; then
 	ruby oo-validation.rb
-elif [ $input == "n" -o $input == "no" ]; then
-	echo -n "******** Skipping OneOps Validation ********"
 fi
 
 now=$(date +"%T")
