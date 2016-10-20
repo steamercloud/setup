@@ -26,6 +26,7 @@ cp $BUILD_BASE/dev-tools/setup-scripts/* .
 
 ./oneops_build.sh "$@"
 
+oo_validation_flag=$( echo "$1" | tr -s  '[:upper:]'  '[:lower:]' )
 echo "OneOps Validation flag is:"$oo_validation_flag
 
 if [ -z  $oo_validation_flag ]; then
