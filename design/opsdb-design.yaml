@@ -78,18 +78,10 @@ platforms:
         placement_strategy: NetworkTopologyStrategy
         keyspace_name: mdb
         replication_factor: '2'
-      keyspace-notifications:
-        keyspace_name: notifications_ks
-        placement_strategy: NetworkTopologyStrategy
-        replication_factor: '2'
-        depends:
-        - keyspace-sensor
       keyspace-sensor:
         placement_strategy: NetworkTopologyStrategy
         keyspace_name: sensor_ksp
         replication_factor: '2'
-        depends:
-        - keyspace-ldb
     secgroup/oneops.1.Secgroup:
       secgroup: {}
     java/oneops.1.Java:
