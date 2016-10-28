@@ -28,12 +28,10 @@ export PATH=$PATH:/usr/local/bin
 
 ./oneops_build.sh "$@"
 
-oo_validation_flag=$( echo "$1" | tr -s  '[:upper:]'  '[:lower:]' )
-echo "OneOps Validation flag is:"$oo_validation_flag
-
-if [ -z  $oo_validation_flag ]; then
-  echo "******** Skipping OneOps Validation ********"
-elif [ $oo_validation_flag == "y" -o $oo_validation_flag == "yes" ]; then
+if [ $oo_validation_flag == "false" ]; then
+	echo "******** Skipping OneOps Validation ********"
+elif [ $oo_validation_flag == "true" ]; then
+	echo "******** Doing OneOps Validation ********"
 	ruby oo-validation.rb
 fi
 
