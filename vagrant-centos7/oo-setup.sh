@@ -28,11 +28,11 @@ export PATH=$PATH:/usr/local/bin
 
 ./oneops_build.sh "$@"
 
-if [ $oo_validation_flag == "false" ]; then
+if [ $OO_VALIDATION == "false" ]; then
 	echo "******** Skipping OneOps Validation ********"
-elif [ $oo_validation_flag == "true" ]; then
+elif [ $OO_VALIDATION == "true" ]; then
 	echo "******** Doing OneOps Validation ********"
-	ruby oo-validation.rb
+	ruby oo_test.rb
 fi
 
 now=$(date +"%T")
