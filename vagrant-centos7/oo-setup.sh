@@ -28,11 +28,13 @@ export PATH=$PATH:/usr/local/bin
 
 ./oneops_build.sh "$@"
 
-if [ $OO_VALIDATION == "false" ]; then
-	echo "******** Skipping OneOps Validation ********"
+if [ -z $OO_VALIDATION ]; then
+	echo "OO_VALIDATION environment variable has not neen set in the host machine.. Skipping OneOps Validation"
+elif [ $OO_VALIDATION == "false" ]; then
+	echo "OO_VALIDATION environment variable is set as false in the host machine.. Skipping OneOps Validation"
 elif [ $OO_VALIDATION == "true" ]; then
-	echo "******** Doing OneOps Validation ********"
-	ruby oo_test.rb
+	echo "OO_VALIDATION environment variable is set as true in the host machine.. Doing OneOps Validation"
+	./oo_test.rb
 fi
 
 now=$(date +"%T")
