@@ -26,13 +26,13 @@ cp $BUILD_BASE/dev-tools/setup-scripts/* .
 
 ./oneops_build.sh "$@"
 
-oo_validation_flag=$( echo "$1" | tr -s  '[:upper:]'  '[:lower:]' )
-echo "OneOps Validation flag is:"$oo_validation_flag
-
-if [ -z  $oo_validation_flag ]; then
-  echo "******** Skipping OneOps Validation ********"
-elif [ $oo_validation_flag == "y" -o $oo_validation_flag == "yes" ]; then
-	ruby oo-validation.rb
+if [ -z $OO_VALIDATION ]; then
+	echo "OO_VALIDATION environment variable has not neen set in the host machine.. Skipping OneOps Validation"
+elif [ $OO_VALIDATION == "false" ]; then
+	echo "OO_VALIDATION environment variable is set as false in the host machine.. Skipping OneOps Validation"
+elif [ $OO_VALIDATION == "true" ]; then
+	echo "OO_VALIDATION environment variable is set as true in the host machine.. Doing OneOps Validation"
+	./oo_test.rb
 fi
 
 now=$(date +"%T")
