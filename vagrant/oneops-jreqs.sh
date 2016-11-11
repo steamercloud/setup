@@ -19,7 +19,7 @@ service ntpd start
 
 # postgres
 echo "OO install postgres 9.2"
-yum -y install http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-centos92-9.2-6.noarch.rpm
+yum -y install http://yum.postgresql.org/9.2/redhat/rhel-6-x86_64/pgdg-centos92-9.2-8.noarch.rpm
 yum -y install postgresql92-server postgresql92-contrib
 yum -y install postgresql-devel
 
