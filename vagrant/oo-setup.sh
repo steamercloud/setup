@@ -26,6 +26,10 @@ cp $BUILD_BASE/dev-tools/setup-scripts/* .
 
 ./oneops_build.sh "$@"
 
+if [ $? -ne 0 ]; then
+  exit 1;
+fi
+
 if [ -z $OO_VALIDATION ]; then
 	echo "OO_VALIDATION environment variable has not neen set in the host machine.. Skipping OneOps Validation"
 elif [ $OO_VALIDATION == "false" ]; then
