@@ -296,9 +296,9 @@ platforms:
 
             execute 'service httpd start'
 
-	        execute 'set user permissions for log dir' do
-  	          command "chown -R #{display_user}:#{display_user} #{base_dir}/log"
-	        end
+	    execute 'set user permissions for log dir' do
+              command "chown -R #{display_user}:#{display_user} #{base_dir}/log"
+	    end
 
           attachments:
             enable-via-ecv:
