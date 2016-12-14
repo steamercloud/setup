@@ -84,22 +84,28 @@ platforms:
               cwd "#{base_dir}"
             end
 
-            bash 'bundle' do
-              code <<-EOA
-                bundle config build.pg --with-pg-config=`find / -name pg_config |tail -1`
-                bundle install --local --without development
-              EOA
-              cwd "#{base_dir}"
-            end
-
             bash 'db:migrate' do
               code <<-EOA
-                if [ -z "`ps -fu postgres | grep [r]eceiver`" ]
-                then
-                  bundle exec rake db:setup
-                  bundle exec rake db:migrate
+                is_standby=`sudo -u postgres psql -t -c "SELECT pg_is_in_recovery();"|xargs`
+                echo "is_standby=$is_standby"
+                if [ $is_standby = "t" ]; then
+                  echo "skipping migration (or schema load) because this is slave"
+                  exit
+                fi
+
+                bundle config build.pg --with-pg-config=`find / -name pg_config |tail -1`
+                bundle install --local --without development
+                bundle exec rake db:create
+
+                if [ -z `sudo -u postgres psql -t -c "\d" kloopzapp|grep " organizations "` ]; then
+                    echo "Did not detect schema tables: running schema:load."
+                    bundle exec rake db:schema:load
+                  else
+                    echo "Detected schema tables present: running migrate."
+                    bundle exec rake db:migrate
                 fi
               EOA
+
               environment({'RAILS_ENV' => "$OO_GLOBAL{DISPLAY-RAILS-ENV}",
                            'OODB_HOST' => "localhost",
                            'OODB_DATABASE' => "$OO_GLOBAL{DISPLAY-DB-NAME}",
