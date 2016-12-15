@@ -295,6 +295,10 @@ platforms:
 
             execute 'service httpd start'
 
+	    execute 'set user permissions for log dir' do
+              command "chown -R #{display_user}:#{display_user} #{base_dir}/log"
+	    end
+
           attachments:
             enable-via-ecv:
               path: $OO_LOCAL{home-dir}/enable-via-ecv
