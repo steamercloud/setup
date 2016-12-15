@@ -74,7 +74,7 @@ platforms:
           seed_count: '1'
           num_tokens: '256'
           partitioner: org.apache.cassandra.dht.RandomPartitioner
-          version: '2.0'
+          version: '2.1.9'
           heap_newsize: default
           endpoint_snitch: org.apache.cassandra.locator.Propertyoneops.1.FileSnitch
       user/oneops.1.User:
