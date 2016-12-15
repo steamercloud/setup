@@ -56,7 +56,7 @@ platforms:
       broker-cert-location: /var/lib/certs/broker.ks
       broker-cert-pass: change*me
       adminpass: change*me
-      amqpass: change*me
+      amqpass: $OO_GLOBAL{AMQPASS}
       dbuser: $OO_GLOBAL{SEARCHMQDBUSER}
       dbpass: $OO_GLOBAL{SEARCHMQDBPASSWORD}
       searchmqdb: $OO_GLOBAL{SEARCHMQDB}
@@ -95,7 +95,7 @@ platforms:
           version: 5.13.2
           brokerauthenabled: 'true'
           maxmemory: '4096'
-          adminconsolesecure: 'true'
+          adminconsolesecure: 'false'
           initmemory: '4096'
           adminconsolekeystorepassword: $OO_LOCAL{adminpass}
           brokerpassword: $OO_LOCAL{broker-cert-pass}
@@ -103,7 +103,7 @@ platforms:
           environment:
             KLOOPZ_AMQ_PASS: $OO_LOCAL{amqpass}
           brokerusername: system
-          adminconsolekeystore: file:$OO_LOCAL{broker-cert-location}
+          adminconsolekeystore: $OO_LOCAL{broker-cert-location}
           transportconnector:
             nio: nio://0.0.0.0:61616
             nio+ssl: nio+ssl://0.0.0.0:61617
