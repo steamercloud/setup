@@ -58,8 +58,11 @@ platforms:
       compute/oneops.1.Compute:
         compute:
           size: XL
+
+      os/oneops.1.Os:
+        os:
           hosts:
-            daq: 127.0.0.1
+            daqdb: 127.0.0.1
           additional_search_domains:
           - $OO_GLOBAL{DOMAIN}
       volume/oneops.1.Volume:
@@ -76,7 +79,7 @@ platforms:
           partitioner: org.apache.cassandra.dht.RandomPartitioner
           version: '2.0'
           heap_newsize: default
-          endpoint_snitch: org.apache.cassandra.locator.Propertyoneops.1.FileSnitch
+          endpoint_snitch: org.apache.cassandra.locator.PropertyFileSnitch
       user/oneops.1.User:
         ooadmin:
           home_directory_mode: '755'
@@ -142,7 +145,7 @@ platforms:
       logstash/oneops.1.Logstash:
         logstash:
           outputs:
-           - if "drop" not in [tags] {     oneopsdaq {codec => json }   }   if "metric" in [tags] { file {   message_format => "%{events.rate_1m}"  path=> "/var/run/logstash_metric"         }    }
+           - if "drop" not in [tags] {     oneopsdaq {codec => json cluster_host_port => "daqdb:9160"  }   }   if "metric" in [tags] { file {   message_format => "%{events.rate_1m}"  path=> "/var/run/logstash_metric"         }    }
 
           inputs:
            - 'lumberjack {     port => 4000 ssl_certificate => "/opt/.certs/logstash.crt"     ssl_key => "/opt/.certs/logstash.key"   } '
@@ -378,7 +381,7 @@ platforms:
                                command "rm -fr #{node[:tomcat][:webapp_dir]}/#{war}*"
                             end
                             execute "#{war} war deploy" do
-                               command "cp #{node[:oneops][:home]}/dist/#{war}*.war #{node[:tomcat][:webapp_dir]}"
+                               command "cp #{node[:oneops][:home]}/dist/#{war}*.war #{node[:tomcat][:webapp_dir]}/$OO_LOCAL{deploycontext}.war"
                             end
 
                           end
