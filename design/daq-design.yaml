@@ -381,7 +381,7 @@ platforms:
                                command "rm -fr #{node[:tomcat][:webapp_dir]}/#{war}*"
                             end
                             execute "#{war} war deploy" do
-                               command "cp #{node[:oneops][:home]}/dist/#{war}*.war #{node[:tomcat][:webapp_dir]}"
+                               command "cp #{node[:oneops][:home]}/dist/#{war}*.war #{node[:tomcat][:webapp_dir]}/$OO_LOCAL{deploycontext}.war"
                             end
 
                           end
