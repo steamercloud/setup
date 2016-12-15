@@ -96,14 +96,7 @@ platforms:
                 bundle config build.pg --with-pg-config=`find / -name pg_config |tail -1`
                 bundle install --local --without development
                 bundle exec rake db:create
-
-                if [ -z `sudo -u postgres psql -t -c "\d" kloopzapp|grep " organizations "` ]; then
-                    echo "Did not detect schema tables: running schema:load."
-                    bundle exec rake db:schema:load
-                  else
-                    echo "Detected schema tables present: running migrate."
-                    bundle exec rake db:migrate
-                fi
+                bundle exec rake db:migrate
               EOA
 
               environment({'RAILS_ENV' => "$OO_GLOBAL{DISPLAY-RAILS-ENV}",
