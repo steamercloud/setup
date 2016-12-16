@@ -14,15 +14,15 @@ platforms:
             secgroup:
               inbound:
               - 22 22 tcp 0.0.0.0/0
-              - 9200 9200 tcp 0.0.0.0/0
+              - 9200 9400 tcp 0.0.0.0/0
               - 5000 5000 tcp 0.0.0.0/0
               - 1936 1936 tcp 0.0.0.0/0
               - 35854 35854 tcp 0.0.0.0/0
           lb/oneops.1.Lb:
             lb:
              listeners:
-               - tcp 35854 tcp 35854
                - http 9200 http 9200
+               - tcp 35854 tcp 35854
              ecv_map:
                '9200': GET /
           elasticsearch/oneops.1.Es:
@@ -93,7 +93,7 @@ platforms:
               retries: '3'
               stats_socket_location: /var/lib/haproxy/stats
               listeners:
-                '5000': '4000'
+                '35854': '5000'
               stats_web_port: '1936'
               timeout_server: 1h
               maxconn_defaults: '32000'
