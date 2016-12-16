@@ -27,11 +27,39 @@ platforms:
           logstash/oneops.1.Logstash:
             logstash:
               outputs:
-              - elasticsearch { host => "localhost" port => "9300" cluster => "oneopslogs”
-                protocol => "transport" }
+              - elasticsearch { 
+                  host => "localhost" port => "9300" cluster => "oneopslogs" index_type => "%{type}" protocol => "transport" 
+                }
               inputs:
-              - lumberjack { port => 5000 ssl_certificate => "/opt/.certs/logstash.crt"
-                ssl_key => "/opt/.certs/logstash.key" type => "lumberjack" }
+              - lumberjack { 
+                  port => 5000 ssl_certificate => "/opt/.certs/logstash.crt" ssl_key => "/opt/.certs/logstash.key" type => "inductor"
+                }
+              filters:
+              - grok {
+                  match => [ "message", "%{TIMESTAMP_ISO8601:ts}%{SPACE}%{LOGLEVEL:level}%{SPACE}%{WORD:class}:%{NUMBER:linenumber}%{SPACE}%{NUMBER:requestId}:%{NUMBER:ciId}%{SPACE}[-]*%{SPACE}%{GREEDYDATA:message_string}"]
+                }
+                mutate {
+                  gsub => [ "ts", ",", "." ]
+                }
+                date {
+                  locale => "en"  match => ["ts", "ISO8601"]  timezone => "UTC"
+                }
+                mutate {
+                  gsub => [ "message_string", "cmd out:", "",  "message_string", "cmd:", ""]
+                }
+                if "_grokparsefailure" in [tags] {
+                  mutate {
+                    remove_tag => [ "_grokparsefailure" ]
+                  }
+                }
+                else {
+                  mutate {
+                     replace => { "message" => "%{message_string}" }
+                  }
+                }
+                mutate {
+                  remove_field => [ "message_string", "class","ts" ]
+                }
               version: 1.5.3
           file/oneops.1.File:
             logstash-cert:
