@@ -1,22 +1,19 @@
-overview
-=====
+# Overview
 
-This is a local OneOps instance using Vagrant without metrics collections.  It's a simplified design deployed from bash scripts.  
+This repository contains the necessary tooling to start and run a local OneOps instance using Vagrant without
+metrics collection. The result is a simplified design that is deployed from bash scripts.
 
-For a full-deployment of OneOps with metrics (back loop) use the core assembly within this vagrant image.
+For a full-deployment of OneOps with metrics (back loop), use the core assembly within this vagrant image.
 
-prerequisites
-=======
+# Prerequisites
 
-install VirtualBox and Vagrant (version 1.8 or above)
+- VirtualBox
+- Vagrant (version 1.8 or above)
 
-(until public) add your public ssh key to your account at github.com
+# Installation
 
+Once you have these installed the prerequisites, run `vagrant up`:
 
-install
-=======
-
-Once you have these installed run: 
 
 ```bash
 git clone https://github.com/oneops/setup
@@ -24,14 +21,23 @@ cd setup/vagrant-centos7
 vagrant up 
 ```
 
-Installation takes about 20 min, depending on your internet connection.
-After it is up hit http://localhost:9090
+Installation takes about 20 min depending on your internet connection.
 
-You will have to Sign Up (create local user / org) and then create a Cloud, Assembly, and Environment to deploy something.
+Once the process completed you can access OneOps at http://localhost:9090.
 
-More detailed info on that process [here](http://oneops.github.io/admin/getting-started/#installing-vagrant-image).
+Next steps are
 
-To see the deployment logs:
+- Sign Up (create local user / org)
+- Create a Cloud,
+- Create an Assembly
+- Create an Environment
+
+Then you can create and deploy an application.
+
+More detailed information and additional resources can be found on the
+[OneOps website](http://oneops.com/admin/getting-started/installing-vagrant-image.html).
+
+You can access the deployment logs with:
 
 ```bash
 cd /opt/oneops/inductor
