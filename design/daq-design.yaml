@@ -215,7 +215,7 @@ platforms:
      - daqdb
     variables:
         deploycontext: daq
-        version: daq-api-$OO_GLOBAL{VERSION}
+        version: $OO_GLOBAL{VERSION}
         notifypass: '::ENCRYPTED::'
         ecv-user: $OO_GLOBAL{ECV-USER}
         ecv-secret: $OO_GLOBAL{ECV-SECRET}

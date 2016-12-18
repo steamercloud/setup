@@ -28,7 +28,7 @@ variables:
   DATA-RETRY-DIR: /mnt/retry/
   API-USER: 'oneopsapi'
   API-SECRET: '::ENCRYPTED::'
-  TOMCATGCLOG: /log/apache-tomcat/gc-tomcat7.log
+  TOMCATGCLOG: /log/gc-tomcat7.log
   INSTALL-DIR: /usr/local/oneops
   CMS-DB-HOST: 'cmsdb'
   TOMCATLOGLOCATION: /log/tomcat
