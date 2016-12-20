@@ -30,7 +30,7 @@ variables:
   API-SECRET: '::ENCRYPTED::'
   TOMCATGCLOG: /log/gc-tomcat7.log
   INSTALL-DIR: /usr/local/oneops
-  CMS-DB-HOST: 'cmsdb'
+  CMS-DB-HOST: 'cmsdb.$OO_GLOBAL{DOMAIN}'
   TOMCATLOGLOCATION: /log/tomcat
   DOMAIN-ALIAS: '**changeme**'
   TOMCAT-ACCESS-LOG-FORMAT: '%h %{X-Cms-User}i %{X-Cms-Scope}i %{NSC-Client-IP}i %l%u %t &quot;%r&quot; %s %b %D %F'
