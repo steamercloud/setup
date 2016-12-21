@@ -43,7 +43,7 @@ variables:
   SEARCH-AMQ-USER: 'oneopssearchmq'
   VERSION: 16.06.24-RC1
   BACKUP-HOST : '**changeme**'
-  AMQHOST: 'wire'
+  AMQHOST: 'wire.$OO_GLOBAL{DOMAIN}'
   AMQUSER: 'superuser'
   WIREDBNAME: 'wiredb'
   WIREDBUSER: 'wiredb'
