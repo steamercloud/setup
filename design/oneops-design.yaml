@@ -40,7 +40,7 @@ variables:
   CMS-DB-USER: 'oneopscms'
   CMS-DES-FILE-LOCATION: /usr/local/oneops/certs/oo.key
   SEARCH-AMQ-PASS: '::ENCRYPTED::'
-  SEARCH-AMQ-USER: 'oneopsseqrchmq'
+  SEARCH-AMQ-USER: 'oneopssearchmq'
   VERSION: 16.06.24-RC1
   BACKUP-HOST : '**changeme**'
   AMQHOST: 'wire'
