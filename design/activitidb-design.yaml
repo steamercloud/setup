@@ -8,17 +8,18 @@ platforms:
         distbase: $OO_GLOBAL{DISTBASE}
         install-dir: $OO_GLOBAL{INSTALL-DIR}
         backup-host: $OO_GLOBAL{BACKUP-HOST}
-        activitidbpass: $OO_GLOBAL{ACTIVITI-DB-PASS}
-        activitidbuser: $OO_GLOBAL{ACTIVITI-DB-USER}
+        activiti-db-pass: $OO_GLOBAL{ACTIVITI-DB-PASS}
+        activiti-db-user: $OO_GLOBAL{ACTIVITI-DB-USER}
+        activiti-db-name: $OO_GLOBAL{ACTIVITI-DB-NAME}
      components:
        compute/oneops.1.Compute:
           compute:
             size: L
        database/oneops.1.Database:
          database:
-           dbname: activitidb
-           username: $OO_LOCAL{activitidbuser}
-           password: $OO_LOCAL{activitidbpass}
+           dbname: $OO_LOCAL{activiti-db-name}
+           username: $OO_LOCAL{activiti-db-user}
+           password: $OO_LOCAL{activiti-db-pass}
        postgresql/oneops.1.Postgresql:
          postgresql:
            port: '5432'
