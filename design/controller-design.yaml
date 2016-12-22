@@ -45,6 +45,7 @@ platforms:
         install-dir: $OO_GLOBAL{INSTALL-DIR}
         search-amq-user: $OO_GLOBAL{SEARCH-AMQ-USER}
         search-amq-pass: $OO_GLOBAL{SEARCH-AMQ-PASS}
+        search-amq-host: $OO_GLOBAL{SEARCH-AMQ-HOST}
         domain: $OO_GLOBAL{DOMAIN}
         amqhost: $OO_GLOBAL{AMQHOST}
     components:
@@ -144,6 +145,7 @@ platforms:
             API_ACESS_CONTROL: 'permitAll'
             SEARCHMQ_USER: $OO_LOCAL{search-amq-user}
             SEARCHMQ_PASS: $OO_LOCAL{search-amq-pass}
+            SEARCH_AMQ_HOST: $OO_LOCAL{search-amq-host}
             CONTROLLER_ANTENNA_RETRY_DIR: $OO_LOCAL{antenna-retry-dir}
             CONTROLLER_SEARCH_RETRY_DIR: $OO_LOCAL{search-retry-dir}
             ACTIVITI_DB_HOST: $OO_LOCAL{activiti-db-host}.$OO_LOCAL{domain}
