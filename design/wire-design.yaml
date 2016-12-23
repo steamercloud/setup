@@ -178,7 +178,7 @@ platforms:
                   </bean>
 
                  <bean id="postgres-ds" class="org.postgresql.ds.PGPoolingDataSource" destroy-method="close">
-                    <property name="serverName" value="wiredb"/>
+                    <property name="serverName" value="wiredb.$OO_GLOBAL{DOMAIN}"/>
                     <property name="databaseName" value="$OO_LOCAL{dbname}"/>
                     <property name="portNumber" value="5432"/>
                     <property name="user" value="$OO_LOCAL{dbuser}"/>
