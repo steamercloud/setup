@@ -28,9 +28,9 @@ variables:
   DATA-RETRY-DIR: /mnt/retry/
   API-USER: 'oneopsapi'
   API-SECRET: '::ENCRYPTED::'
-  TOMCATGCLOG: /log/apache-tomcat/gc-tomcat7.log
+  TOMCATGCLOG: /log/gc-tomcat7.log
   INSTALL-DIR: /usr/local/oneops
-  CMS-DB-HOST: 'cmsdb'
+  CMS-DB-HOST: 'cmsdb.$OO_GLOBAL{DOMAIN}'
   TOMCATLOGLOCATION: /log/tomcat
   DOMAIN-ALIAS: '**changeme**'
   TOMCAT-ACCESS-LOG-FORMAT: '%h %{X-Cms-User}i %{X-Cms-Scope}i %{NSC-Client-IP}i %l%u %t &quot;%r&quot; %s %b %D %F'
@@ -40,16 +40,19 @@ variables:
   CMS-DB-USER: 'oneopscms'
   CMS-DES-FILE-LOCATION: /usr/local/oneops/certs/oo.key
   SEARCH-AMQ-PASS: '::ENCRYPTED::'
-  SEARCH-AMQ-USER: 'oneopsseqrchmq'
+  SEARCH-AMQ-USER: 'oneopssearchmq'
+  SEARCH-AMQ-HOST: 'searchmq.$OO_GLOBAL{DOMAIN}'
   VERSION: 16.06.24-RC1
   BACKUP-HOST : '**changeme**'
-  AMQHOST: 'wire'
+  AMQHOST: 'wire.$OO_GLOBAL{DOMAIN}'
   AMQUSER: 'superuser'
-  AMQDBNAME: 'wiredb'
-  AMQDBUSER: 'amqdb'
-  AMQDBPASS: '::ENCRYPTED::'
+  WIREDBNAME: 'wiredb'
+  WIREDBUSER: 'wiredb'
+  WIREDBPASS: '::ENCRYPTED::'
   ACTIVITI-DB-PASS: '::ENCRYPTED::'
   ACTIVITI-DB-USER: 'activiti'
+  ACTIVITI-DB-HOST: 'activitidb.$OO_GLOBAL{DOMAIN}'
+  ACTIVITI-DB-NAME: 'activitidb'
   DAQ-DB: 'daqdb'
   SENSOR-POOL-SIZE : '1'
   DISPLAY-DB-NAME: display

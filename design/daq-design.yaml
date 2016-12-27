@@ -79,7 +79,7 @@ platforms:
           partitioner: org.apache.cassandra.dht.RandomPartitioner
           version: '2.1.9'
           heap_newsize: default
-          endpoint_snitch: org.apache.cassandra.locator.PropertyFileSnitch
+          endpoint_snitch: org.apache.cassandra.locator.GossipingPropertyFileSnitch
       user/oneops.1.User:
         ooadmin:
           home_directory_mode: '755'
@@ -215,7 +215,7 @@ platforms:
      - daqdb
     variables:
         deploycontext: daq
-        version: daq-api-$OO_GLOBAL{VERSION}
+        version: $OO_GLOBAL{VERSION}
         notifypass: '::ENCRYPTED::'
         ecv-user: $OO_GLOBAL{ECV-USER}
         ecv-secret: $OO_GLOBAL{ECV-SECRET}

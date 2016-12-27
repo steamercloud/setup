@@ -22,7 +22,7 @@ platforms:
         notifypass: '::ENCRYPTED::'
         antenna-retry-dir: /mnt/retry/controller/antenna/
         search-retry-dir: /mnt/retry/controller/search/
-        activiti-db-host: activitidb
+        activiti-db-host: $OO_GLOBAL{ACTIVITI-DB-HOST}
         activiti-db-user: $OO_GLOBAL{ACTIVITI-DB-USER}
         activiti-db-pass: $OO_GLOBAL{ACTIVITI-DB-PASS}
         version: $OO_GLOBAL{VERSION}
@@ -45,6 +45,7 @@ platforms:
         install-dir: $OO_GLOBAL{INSTALL-DIR}
         search-amq-user: $OO_GLOBAL{SEARCH-AMQ-USER}
         search-amq-pass: $OO_GLOBAL{SEARCH-AMQ-PASS}
+        search-amq-host: $OO_GLOBAL{SEARCH-AMQ-HOST}
         domain: $OO_GLOBAL{DOMAIN}
         amqhost: $OO_GLOBAL{AMQHOST}
     components:
@@ -144,9 +145,10 @@ platforms:
             API_ACESS_CONTROL: 'permitAll'
             SEARCHMQ_USER: $OO_LOCAL{search-amq-user}
             SEARCHMQ_PASS: $OO_LOCAL{search-amq-pass}
+            SEARCH_AMQ_HOST: $OO_LOCAL{search-amq-host}
             CONTROLLER_ANTENNA_RETRY_DIR: $OO_LOCAL{antenna-retry-dir}
             CONTROLLER_SEARCH_RETRY_DIR: $OO_LOCAL{search-retry-dir}
-            ACTIVITI_DB_HOST: $OO_LOCAL{activiti-db-host}.$OO_LOCAL{domain}
+            ACTIVITI_DB_HOST: $OO_LOCAL{activiti-db-host}
             ACTIVITI_DB_USER: $OO_LOCAL{activiti-db-user}
             ACTIVITI_DB_PASS: $OO_LOCAL{activiti-db-pass}
           port: '8080'
