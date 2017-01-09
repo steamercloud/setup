@@ -28,7 +28,7 @@ variables:
   DATA-RETRY-DIR: /mnt/retry/
   API-USER: 'oneopsapi'
   API-SECRET: '::ENCRYPTED::'
-  TOMCATGCLOG: /log/gc-tomcat7.log
+  TOMCATGCLOG: /log/tomcat/gc-tomcat7.log
   INSTALL-DIR: /usr/local/oneops
   CMS-DB-HOST: 'cmsdb.$OO_GLOBAL{DOMAIN}'
   TOMCATLOGLOCATION: /log/tomcat
@@ -46,9 +46,9 @@ variables:
   BACKUP-HOST : '**changeme**'
   AMQHOST: 'wire.$OO_GLOBAL{DOMAIN}'
   AMQUSER: 'superuser'
-  WIREDBNAME: 'wiredb'
-  WIREDBUSER: 'wiredb'
-  WIREDBPASS: '::ENCRYPTED::'
+  WIRE-DB-NAME: 'wiredb'
+  WIRE-DB-USER: 'wiredb'
+  WIRE-DB-PASS: '::ENCRYPTED::'
   ACTIVITI-DB-PASS: '::ENCRYPTED::'
   ACTIVITI-DB-USER: 'activiti'
   ACTIVITI-DB-HOST: 'activitidb.$OO_GLOBAL{DOMAIN}'
@@ -59,9 +59,9 @@ variables:
   DISPLAY-DB-USERNAME: display
   DISPLAY-DB-PASSWORD: '::ENCRYPTED::'
   DISPLAY-RAILS-ENV: enterprise
-  SEARCHMQDB: searchmq
-  SEARCHMQDBUSER: searchmq
-  SEARCHMQDBPASSWORD: '::ENCRYPTED::'
+  SEARCHMQ-DB-NAME: searchmq
+  SEARCHMQ-DB-USER: searchmq
+  SEARCHMQ-DB-PASSWORD: '::ENCRYPTED::'
 
 
 

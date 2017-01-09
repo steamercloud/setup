@@ -8,9 +8,9 @@ platforms:
     pack: oneops/postgresql:1
     major_version: 1
     variables:
-      dbuser: $OO_GLOBAL{WIREDBUSER}
-      dbpass: $OO_GLOBAL{WIREDBPASS}
-      dbname: $OO_GLOBAL{WIREDBNAME}
+      dbuser: $OO_GLOBAL{WIRE-DB-USER}
+      dbpass: $OO_GLOBAL{WIRE-DB-PASS}
+      dbname: $OO_GLOBAL{WIRE-DB-NAME}
     components:
       secgroup/oneops.1.Secgroup:
         secgroup:
@@ -55,9 +55,9 @@ platforms:
       broker-cert-pass: change*me
       adminpass: adminpass
       amqpass: $OO_GLOBAL{AMQPASS}
-      dbuser: $OO_GLOBAL{WIREDBUSER}
-      dbpass: $OO_GLOBAL{WIREDBPASS}
-      dbname: $OO_GLOBAL{WIREDBNAME}
+      dbuser: $OO_GLOBAL{WIRE-DB-USER}
+      dbpass: $OO_GLOBAL{WIRE-DB-PASS}
+      dbname: $OO_GLOBAL{WIRE-DB-NAME}
     components:
       secgroup/oneops.1.Secgroup:
         secgroup:
