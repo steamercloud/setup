@@ -234,6 +234,7 @@ platforms:
         cms-des-file-location: $OO_GLOBAL{CMS-DES-FILE-LOCATION}
         cms-db-des-key: $OO_GLOBAL{CMS-DB-DES-KEY}
         daq-db: $OO_GLOBAL{DAQ-DB}
+        daq-version: 1.0.0
     components:
       tomcat/oneops.1.Tomcat:
         tomcat:
@@ -381,7 +382,7 @@ platforms:
                                command "rm -fr #{node[:tomcat][:webapp_dir]}/#{war}*"
                             end
                             execute "#{war} war deploy" do
-                               command "cp #{node[:oneops][:home]}/dist/#{war}*.war #{node[:tomcat][:webapp_dir]}/$OO_LOCAL{deploycontext}.war"
+                               command "cp #{node[:oneops][:home]}/dist/#{war}*.war #{node[:tomcat][:webapp_dir]}/$OO_LOCAL{deploycontext}-$OO_LOCAL{daq-version}.war"
                             end
 
                           end
@@ -393,10 +394,10 @@ platforms:
 
           should_expand: 'true'
           checksum: ''
-          location: $OO_LOCAL{distbase}/oneops-daq-api-1.0.0-$OO_LOCAL{version}.tar.gz
+          location: $OO_LOCAL{distbase}/oneops-daq-api-$OO_LOCAL{daq-version}-$OO_LOCAL{version}.tar.gz
           repository: '*Using full RepoURL*'
           version: $OO_LOCAL{version}
-          url: $OO_LOCAL{distbase}/oneops-daq-api-1.0.0-$OO_LOCAL{version}.tar.gz
+          url: $OO_LOCAL{distbase}/oneops-daq-api-$OO_LOCAL{daq-version}-$OO_LOCAL{version}.tar.gz
           username: not_required
           attachments:
             disableECV:
@@ -428,7 +429,7 @@ platforms:
         listeners:
          - http 8080 http 8080
         ecv_map:
-          '8080': GET /$OO_LOCAL{deploycontext}/rest/ecv/status
+          '8080': GET /$OO_LOCAL{deploycontext}-$OO_LOCAL{daq-version}/rest/ecv/status
 
       fqdn/oneops.1.Fqdn:
        fqdn:

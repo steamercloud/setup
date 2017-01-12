@@ -60,7 +60,7 @@ platforms:
         database:
           dbname: $OO_GLOBAL{DISPLAY-DB-NAME}
           username: $OO_GLOBAL{DISPLAY-DB-USERNAME}
-          password: 'changeme'
+          password: $OO_GLOBAL{DISPLAY-DB-PASSWORD}
 
       artifact/oneops.1.Artifact:
         display:
@@ -295,9 +295,9 @@ platforms:
 
             execute 'service httpd start'
 
-	    execute 'set user permissions for log dir' do
+            execute 'set user permissions for log dir' do
               command "chown -R #{display_user}:#{display_user} #{base_dir}/log"
-	    end
+            end
 
           attachments:
             enable-via-ecv:

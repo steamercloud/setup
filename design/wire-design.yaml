@@ -127,7 +127,7 @@ platforms:
           initmemory: '4096'
           adminconsolekeystorepassword: $OO_LOCAL{adminpass}
           brokerpassword: $OO_LOCAL{broker-cert-pass}
-          adminpassword: 'changeme'
+          adminpassword: $OO_LOCAL{adminpass}
           environment:
             KLOOPZ_AMQ_PASS: $OO_LOCAL{amqpass}
           brokerusername: system
