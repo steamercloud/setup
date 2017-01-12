@@ -40,7 +40,7 @@ platforms:
          database:
            dbname: kloopzdb
            username: $OO_LOCAL{cms-db-user}
-           password: 'changeme'
+           password: $OO_LOCAL{cms-db-pass}
        artifact/oneops.1.Artifact:
          db-artifact:
            install_dir: $OO_LOCAL{install-dir}
