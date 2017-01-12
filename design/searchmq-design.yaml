@@ -8,9 +8,9 @@ platforms:
     pack: oneops/postgresql:1
     major_version: 1
     variables:
-      dbuser: $OO_GLOBAL{SEARCHMQDBUSER}
-      dbpass: $OO_GLOBAL{SEARCHMQDBPASSWORD}
-      searchmqdb: $OO_GLOBAL{SEARCHMQDB}
+      dbuser: $OO_GLOBAL{SEARCHMQ-DB-USER}
+      dbpass: $OO_GLOBAL{SEARCHMQ-DB-PASSWORD}
+      searchmqdb: $OO_GLOBAL{SEARCHMQ-DB-NAME}
     components:
       secgroup/oneops.1.Secgroup:
         secgroup:
@@ -57,9 +57,9 @@ platforms:
       broker-cert-pass: change*me
       adminpass: change*me
       amqpass: $OO_GLOBAL{AMQPASS}
-      dbuser: $OO_GLOBAL{SEARCHMQDBUSER}
-      dbpass: $OO_GLOBAL{SEARCHMQDBPASSWORD}
-      searchmqdb: $OO_GLOBAL{SEARCHMQDB}
+      dbuser: $OO_GLOBAL{SEARCHMQ-DB-USER}
+      dbpass: $OO_GLOBAL{SEARCHMQ-DB-PASSWORD}
+      searchmqdb: $OO_GLOBAL{SEARCHMQ-DB-NAME}
 
     components:
       secgroup/oneops.1.Secgroup:
