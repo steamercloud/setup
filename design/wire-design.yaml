@@ -69,7 +69,11 @@ platforms:
       compute/oneops.1.Compute:
         compute:
           size: L
-          ostype: centos-7.2
+      os/oneops.1.Os:
+        os:
+          additional_search_domains:
+          - $OO_GLOBAL{DOMAIN}
+          ostype: centos-7.0
       fqdn/oneops.1.Fqdn:
         fqdn:
           aliases:
