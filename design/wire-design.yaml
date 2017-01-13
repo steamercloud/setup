@@ -73,7 +73,7 @@ platforms:
         os:
           additional_search_domains:
           - $OO_GLOBAL{DOMAIN}
-          ostype: centos-7.0
+          ostype: centos-7.2
       fqdn/oneops.1.Fqdn:
         fqdn:
           aliases:
