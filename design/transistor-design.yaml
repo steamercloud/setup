@@ -102,7 +102,7 @@ platforms:
              java.security.AllPermission;\r\n};\r\n"
            mirrors: []
            access_log_pattern: $OO_LOCAL{tomcat-access-log-format}
-           build_version: '62'
+           build_version: '73'
            advanced_connector_config:
              connectionTimeout: '20000'
              maxKeepAliveRequests: '100'

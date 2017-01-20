@@ -305,7 +305,7 @@ platforms:
           advanced_connector_config:
             connectionTimeout: '20000'
             maxKeepAliveRequests: '100'
-          build_version: '62'
+          build_version: '73'
           access_log_dir: $OO_LOCAL{tomcatloglocation}
           webapp_install_dir: /opt/tomcat7/webapps
           version: '7.0'
