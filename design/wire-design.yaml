@@ -91,7 +91,7 @@ platforms:
       java/oneops.1.Java:
         java:
           install_dir: /usr/lib/jvm
-          jrejdk: server-jre
+          jrejdk: jdk
           version: '8'
       keystore/oneops.1.Keystore:
         broker-keystore:
