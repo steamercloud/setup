@@ -41,6 +41,12 @@ platforms:
              - tcp 5432 tcp 5432
           ecv_map:
               '5432': GET /NOTUSED
+      user/oneops.1.User:
+        ooadmin:
+          home_directory_mode: '755'
+          home_directory: '/home/ooadmin'
+          ulimit: '16384'
+          username: ooadmin
 
   # wire
   wire:
