@@ -111,6 +111,12 @@ platforms:
           queuename: search.stream
         queue-sensor-mgmt:
           queuename: sensor-mgmt
+      user/oneops.1.User:
+        ooadmin:
+          home_directory_mode: '755'
+          home_directory: '/home/ooadmin'
+          ulimit: '16384'
+          username: ooadmin
       artifact/oneops.1.Artifact:
         amq-artifact:
           repository: Using full RepoURL
